@@ -1,0 +1,27 @@
+name: Auto Refresh GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Change this if your default branch is different
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Invalidate GitHub Pages Cache
+      run: |
+        curl -X PURGE https://sandeep-singh4486.github.io/
+
+    - name: Commit Cache-Busting Changes
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        find . -type f \( -name "*.css" -o -name "*.js" \) -exec sed -i "s/\?v=[0-9]\+/?v=$(date +%s)/g" {} +
+        git add .
+        git commit -m "Auto-update cache version"
+        git push
