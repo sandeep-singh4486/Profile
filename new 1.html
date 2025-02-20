@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Certificates - Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .certificates-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .certificates-container section {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .certificates-container section:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 1024px) {
+            .certificates-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .certificates-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="experience.html">Professional Experience</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="papers.html">Paper Publications</a></li>
+                <li><a href="workshops.html">Workshops</a></li>
+                <li><a href="hobbies.html">Hobbies</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="interests.html">Interests</a></li>
+                <li><a href="documents.html">Documents</a></li>
+                <li><a href="certificates.html">Certificates</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="certificates-container">
+            <section id="education-certificates">
+                <h2>Education Certificates</h2>
+                <div class="certificate">
+                    <h3>Certificate 1: [Degree or Course Name]</h3>
+                    <p>Issued by [Institution Name], [Year].</p>
+                    <p><a href="certificates/education_certificate1.pdf" target="_blank">View Certificate</a> | <a href="certificates/education_certificate1.pdf" download>Download Certificate</a></p>
+                </div>
+                <div class="certificate">
+                    <h3>Certificate 2: [Degree or Course Name]</h3>
+                    <p>Issued by [Institution Name], [Year].</p>
+                    <p><a href="certificates/education_certificate2.pdf" target="_blank">View Certificate</a> | <a href="certificates/education_certificate2.pdf" download>Download Certificate</a></p>
+                </div>
+            </section>
+
+            <section id="experience-certificates">
+                <h2>Experience Certificates</h2>
+                <div class="certificate">
+                    <h3>Certificate 1: [Position or Role]</h3>
+                    <p>Issued by [Company Name], [Year].</p>
+                    <p><a href="certificates/experience_certificate1.pdf" target="_blank">View Certificate</a> | <a href="certificates/experience_certificate1.pdf" download>Download Certificate</a></p>
+                </div>
+                <div class="certificate">
+                    <h3>Certificate 2: [Position or Role]</h3>
+                    <p>Issued by [Company Name], [Year].</p>
+                    <p><a href="certificates/experience_certificate2.pdf" target="_blank">View Certificate</a> | <a href="certificates/experience_certificate2.pdf" download>Download Certificate</a></p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Your Name. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

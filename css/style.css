@@ -99,3 +99,34 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+.certificates-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.certificates-container section {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.certificates-container section:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .certificates-container {
+        grid-template-columns: repeat(2, 1fr); /* Two columns */
+    }
+}
+
+@media (max-width: 768px) {
+    .certificates-container {
+        grid-template-columns: 1fr; /* One column for mobile */
+    }
+}
