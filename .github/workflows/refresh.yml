@@ -18,10 +18,14 @@ jobs:
         curl -X PURGE https://sandeep-singh4486.github.io/
 
     - name: Commit Cache-Busting Changes
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-        find . -type f \( -name "*.css" -o -name "*.js" \) -exec sed -i "s/\?v=[0-9]\+/?v=$(date +%s)/g" {} +
-        git add .
-        git commit -m "Auto-update cache version"
-        git push
+  run: |
+    git config --global user.name "GitHub Actions"
+    git config --global user.email "actions@github.com"
+    git checkout main
+    find . -type f \( -name "*.css" -o -name "*.js" \) -exec sed -i "s/\?v=[0-9]\+/?v=$(date +%s)/g" {} +
+    git add .
+    git commit -m "Auto-update cache version" || echo "No changes to commit"
+    git push origin HEAD:cache-update-branch
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
