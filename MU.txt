@@ -1,10 +1,10 @@
-D:\Sandeep\Profile\certificates\Academic\Online Courses\MU\Advanced C Programming.pdf
-D:\Sandeep\Profile\certificates\Academic\Online Courses\MU\C Programming Linked List Data Structures.pdf
-D:\Sandeep\Profile\certificates\Academic\Online Courses\MU\CAN and CAN FD Protocol and Physical Layer Basics_MU.pdf
-D:\Sandeep\Profile\certificates\Academic\Online Courses\MU\Creating Advanced Embedded Applications with 32-bit MCUsMPUs using the MPLABr Harmony v3 Software Framework.pdf
-D:\Sandeep\Profile\certificates\Academic\Online Courses\MU\Debugging Techniques for Serial Communications_MU.pdf
-D:\Sandeep\Profile\certificates\Academic\Online Courses\MU\Get Started Simplifying Your IoT Design with Azure RTOS.pdf
-D:\Sandeep\Profile\certificates\Academic\Online Courses\MU\MPLABr Harmony v3 Fundamentals.pdf
-D:\Sandeep\Profile\certificates\Academic\Online Courses\MU\MPLABr X Tips & Tricks_MU.pdf
-D:\Sandeep\Profile\certificates\Academic\Online Courses\MU\Simple Applications Using the MPLABr Harmony v3 Peripheral Libraries.pdf
-D:\Sandeep\Profile\certificates\Academic\Online Courses\MU\Syntax And Structure of C.pdf
+D:/Sandeep/Profile/certificates/Academic/Online Courses/MU/Advanced C Programming.pdf
+D:/Sandeep/Profile/certificates/Academic/Online Courses/MU/C Programming Linked List Data Structures.pdf
+D:/Sandeep/Profile/certificates/Academic/Online Courses/MU/CAN and CAN FD Protocol and Physical Layer Basics_MU.pdf
+D:/Sandeep/Profile/certificates/Academic/Online Courses/MU/Creating Advanced Embedded Applications with 32-bit MCUsMPUs using the MPLABr Harmony v3 Software Framework.pdf
+D:/Sandeep/Profile/certificates/Academic/Online Courses/MU/Debugging Techniques for Serial Communications_MU.pdf
+D:/Sandeep/Profile/certificates/Academic/Online Courses/MU/Get Started Simplifying Your IoT Design with Azure RTOS.pdf
+D:/Sandeep/Profile/certificates/Academic/Online Courses/MU/MPLABr Harmony v3 Fundamentals.pdf
+D:/Sandeep/Profile/certificates/Academic/Online Courses/MU/MPLABr X Tips & Tricks_MU.pdf
+D:/Sandeep/Profile/certificates/Academic/Online Courses/MU/Simple Applications Using the MPLABr Harmony v3 Peripheral Libraries.pdf
+D:/Sandeep/Profile/certificates/Academic/Online Courses/MU/Syntax And Structure of C.pdf

@@ -5209,3 +5209,130 @@ Let me know if you'd like any more adjustments or additional features!
 
 
 ChatGPT can make mistakes. Check important info.
+
+
+To interconnect the three pages (certificates.html, Atlassian University.html, and Coursera Cer.html) while keeping certificates.html as the main page, you can modify the certificates.html file to include navigation links to the other two pages. Also, each of the subpages (Atlassian University.html and Coursera Cer.html) should have a back button linking back to certificates.html.
+Steps to Modify:
+
+    Add links to certificates.html:
+        Include menu items for "Atlassian Certificates" and "Coursera Certificates."
+
+    Modify Atlassian University.html and Coursera Cer.html:
+        Add a Back to Certificates link to return to certificates.html.
+
+Updated certificates.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Certificates - Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="experience.html">Professional Experience</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="papers.html">Paper Publications</a></li>
+                <li><a href="workshops.html">Workshops</a></li>
+                <li><a href="hobbies.html">Hobbies</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="interests.html">Interests</a></li>
+                <li><a href="documents.html">Documents</a></li>
+                <li><a href="certificates.html">Certificates</a></li>
+                <li><a href="Atlassian University.html">Atlassian Certificates</a></li>
+                <li><a href="Coursera Cer.html">Coursera Certificates</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>My Certificates</h1>
+            <p>Explore my certifications from different platforms:</p>
+            <ul>
+                <li><a href="Atlassian University.html">View Atlassian Certificates</a></li>
+                <li><a href="Coursera Cer.html">View Coursera Certificates</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Your Name. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+
+Updated Atlassian University.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Atlassian University</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Certificates from Atlassian University</h1>
+    </header>
+    <main>
+        <ul>
+            <li><a href="certificates/Academic/Online Courses/Atlassian/Beginner's Guide to Agile in Jira Badge _ Atlassian.pdf">Beginner's Guide to Agile in Jira Badge</a></li>
+            <li><a href="certificates/Academic/Online Courses/Atlassian/Configure issues and fields across Jira projects using schemes.pdf">Configure issues and fields across Jira projects</a></li>
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2025 Your Name. All Rights Reserved. | <a href="certificates.html">Back to Certificates</a></p>
+    </footer>
+</body>
+</html>
+
+Updated Coursera Cer.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coursera</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Certificates from Coursera</h1>
+    </header>
+    <main>
+        <ul>
+            <li><a href="certificates/Academic/Online Courses/Coursera/Create Your First Python Program_coursera.pdf">Create Your First Python Program</a></li>
+            <li><a href="certificates/Academic/Online Courses/Coursera/Introduction to Programming with MATLAB_coursera.pdf">Introduction to Programming with MATLAB</a></li>
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2025 Your Name. All Rights Reserved. | <a href="certificates.html">Back to Certificates</a></p>
+    </footer>
+</body>
+</html>
+
+Functionality Explanation:
+
+    Navigation Menu:
+        certificates.html has menu links to both "Atlassian Certificates" and "Coursera Certificates."
+        Users can navigate from certificates.html to either page.
+
+    Back to Certificates Button:
+        Both Atlassian University.html and Coursera Cer.html now include a Back to Certificates link.
+        This ensures users can return easily to the main certificates.html page.
+
+Now, clicking on Atlassian Certificates or Coursera Certificates in certificates.html opens the respective certificate lists, and users can return by clicking "Back to Certificates." 🚀
