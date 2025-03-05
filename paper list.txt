@@ -1,0 +1,45 @@
+ Title: Steganography of audio data into audio using Matlab & transmission over Zigbee
+    Conference Name: International Journal of Combined Research & Development (IJCRD)
+    College: SCIT, India
+    Date: January 2015
+https://www.ijcrd.com/files/Vol_4_issue_1/51016.pdf
+Additionally, the certificate includes:
+
+    eISSN: 2321-225X
+    pISSN: 2321-2241
+	
+Title: A spider type crawling robot for pipeline defect detection
+Conference Name: Wireless Control & Communication Technologies (NCWCT-2014)
+College: Dr. Ambedkar Institute of Technology, Bangalore
+Date: 24th - 25th April, 2014
+
+Title: AUTOMATED ROBOT FOR FLYER DISTRIBUTION AND AWARENESS PROMOTER
+Conference Name: Wireless Control & Communication Technologies (NCWCT-2014)
+College: Dr. Ambedkar Institute of Technology, Bangalore
+Date: 24th - 25th April, 2014
+
+Title: Steganography of audio data into audio using Matlab and Transmission over Zigbee
+Conference Name: National Conference on Advanced Communication, VLSI Design & Signal Processing (NCCVS-14)
+College: K. S. School of Engineering & Management, Bangalore
+Date: 5th May 2014
+
+Title: RFID-Based Tracking and Checking Cargo Containers, Plus Real-Time Using Electronic Lock
+Conference Name: Fifth National Conference on Information Sciences (NCIS 2014)
+College: School of Information Sciences, Manipal University
+Date: 26th - 27th September 2014
+
+Title of Paper: Communication System for Dumb and Deaf People by Real-Time Sign Language Recognition
+Conference Name: National Conference on Recent Trends in Electronics and Communication Engineering (MANTHAN-2016)
+College: SJC Institute of Technology
+Department: Electronics and Communication Engineering
+Date: 21st & 22nd April 2016
+Author: Sandeep Singh R.
+Co-Author: Thilak Raj T.
+
+Journal Name: International Journal of Technical Research and Applications (IJTRA)
+Paper Title: Tracking and Checking Cargo Containers Pilferage Using Electronic Lock
+Author: Sandeep Singh R. et al.
+Publication Details: Published in IJTRA, Volume 2, Issue 5, September-October 2014
+ISSN: 2320-8163
+Website: www.ijtra.com
+
