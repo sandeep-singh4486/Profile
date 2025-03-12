@@ -22,93 +22,8 @@ header {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding: 12px 18px;
-    border-radius: 5px;
-    transition: background 0.3s, color 0.3s;
-}
-
-nav ul li a:hover, nav ul li a.active {
-    background: #ffcc00;
-    color: #002855;
-}
-
-/* Main Content Container */
-.container {
-    max-width: 1200px;
-    margin: 60px auto;
-    padding: 40px;
-    background: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-h1, h2, h3 {
-    color: #002855;
-    font-weight: 700;
-}
-
-/* Buttons */
-button {
-    background: linear-gradient(135deg, #004a99, #0066cc);
-    color: white;
-    border: none;
-    padding: 14px 24px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.3s ease-in-out;
-}
-
-button:hover {
-    background: #ffcc00;
-    color: #002855;
-}
-
-/* Footer */
-footer {
-    background: linear-gradient(135deg, #002855, #004a99);
-    color: white;
-    text-align: center;
-    padding: 25px;
-    margin-top: 60px;
-    font-size: 0.9rem;
-}
-/* Enhanced Corporate Theme Styling */
-
-/* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-
-/* Global Styles */
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #eef2f5;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* Header and Navigation */
-header {
-    background: linear-gradient(135deg, #002855, #004a99);
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+nav {
+    margin-top: 15px;
 }
 
 nav ul {
@@ -148,6 +63,11 @@ nav ul li a:hover, nav ul li a.active {
 h1, h2, h3 {
     color: #002855;
     font-weight: 700;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 20px;
 }
 
 /* Buttons */
@@ -201,4 +121,53 @@ footer {
     padding: 25px;
     margin-top: 60px;
     font-size: 0.9rem;
+}
+
+/* Ensure sections are visible */
+section {
+    margin-bottom: 40px;
+}
+
+/* Clear floats and ensure layout consistency */
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Adjust sections to be more spaced out */
+section h2 {
+    margin-top: 30px;
+    font-size: 2rem;
+}
+
+section p {
+    font-size: 1.1rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    h1, h2, h3 {
+        text-align: center;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
 }
