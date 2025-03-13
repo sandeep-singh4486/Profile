@@ -77,6 +77,13 @@ p {
     color: #555;
 }
 
+/* Ensure non-hyperlink headings are styled normally */
+h2, h3 {
+    text-decoration: none; /* Removes hyperlink appearance */
+    color: #002855; /* Ensures consistent heading color */
+    cursor: default; /* Avoids pointer cursor */
+}
+
 /* Buttons */
 button {
     background: linear-gradient(135deg, #004a99, #0066cc);
