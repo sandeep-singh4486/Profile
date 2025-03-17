@@ -1,16 +1,15 @@
-/* Enhanced Corporate Theme Styling */
-
 /* Import Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 /* Global Styles */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #eef2f5;
     color: #333;
     line-height: 1.6;
+    text-align: center;
     box-sizing: border-box;
 }
 
@@ -50,19 +49,21 @@ nav ul li a {
     transition: background 0.3s, color 0.3s;
 }
 
-nav ul li a:hover, nav ul li a.active {
+nav ul li a:hover, 
+nav ul li a.active {
     background: #ffcc00;
     color: #002855;
 }
 
 /* Main Content Container */
 .container {
-    max-width: 1200px;
-    margin: 60px auto;
-    padding: 40px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
     background: white;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    text-align: left;
 }
 
 h1, h2, h3 {
@@ -77,11 +78,25 @@ p {
     color: #555;
 }
 
-/* Ensure non-hyperlink headings are styled normally */
-h2, h3 {
-    text-decoration: none; /* Removes hyperlink appearance */
-    color: #002855; /* Ensures consistent heading color */
-    cursor: default; /* Avoids pointer cursor */
+/* Chapter Section */
+.chapter {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+    transition: transform 0.2s;
+}
+
+.chapter:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.chapter img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
 }
 
 /* Buttons */
@@ -94,6 +109,7 @@ button {
     cursor: pointer;
     font-size: 1rem;
     transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
@@ -101,30 +117,33 @@ button:hover {
     color: #002855;
 }
 
-/* Resume Download Button */
-.resume-download {
-    text-align: center;
-    margin: 30px 0;
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.btn {
-    display: inline-block;
-    padding: 14px 28px;
-    font-size: 18px;
-    font-weight: bold;
+/* Back to Top Button */
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007BFF;
     color: white;
-    background: linear-gradient(135deg, #004a99, #0066cc);
-    text-decoration: none;
-    border-radius: 8px;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.btn:hover {
-    background: #ffcc00;
-    color: #002855;
-    box-shadow: 2px 6px 15px rgba(0, 0, 0, 0.3);
-    transform: translateY(-2px);
+#backToTop:hover {
+    background: #0056b3;
+}
+
+#backToTop:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Footer */
