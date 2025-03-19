@@ -68,7 +68,19 @@
             <li><strong>Serial Debugging:</strong> UART is commonly used for debugging purposes by connecting a device to a computer for logging output or controlling the device.</li>
             <li><strong>Data Transfer:</strong> UART is widely used for data transfer between embedded systems, modems, or other serial communication devices.</li>
         </ul>
-
+<div class="example">
+            <p><strong>Example: Sending Data Over UART with Arduino</strong></p>
+            <code>
+                void setup() { <br>
+                &nbsp;&nbsp;Serial.begin(9600); <br>
+                } <br>
+                void loop() { <br>
+                &nbsp;&nbsp;Serial.println("Hello, UART!"); <br>
+                &nbsp;&nbsp;delay(1000); <br>
+                }
+            </code>
+        </div>
+        
         <h2>Conclusion</h2>
         <p>
             UART is a simple, reliable, and efficient protocol for serial communication. It is especially popular in embedded systems and low-level communication applications due to its ease of implementation and low resource requirements. Understanding the UART communication protocol, its standards, packet structure, and pin configuration is essential for designing and troubleshooting embedded systems.
@@ -208,7 +220,18 @@
             <li><strong>Display Interfaces:</strong> SPI is used to control LED displays, OLED screens, and TFT displays in embedded systems.</li>
             <li><strong>Communication between Microcontrollers:</strong> SPI allows fast communication between different microcontrollers or processors in a system.</li>
         </ul>
-
+ <div class="example">
+            <p><strong>Example: Sending a LIN Message</strong></p>
+            <code>
+                void setup() { <br>
+                &nbsp;&nbsp;Serial.begin(19200); <br>
+                } <br>
+                void loop() { <br>
+                &nbsp;&nbsp;Serial.write(0x55); // Sync Byte <br>
+                &nbsp;&nbsp;delay(1000); <br>
+                }
+            </code>
+ </div>
         <h2>Conclusion</h2>
         <p>
             SPI is a powerful and efficient communication protocol that is widely used in embedded systems for high-speed data transfer. Its synchronous nature allows devices to communicate quickly and reliably, making it ideal for applications requiring fast data exchange. By understanding the SPI communication protocol, its standards, packet structure, and pin configuration, engineers can build more reliable and optimized embedded systems.
@@ -283,7 +306,18 @@
             <li><strong>Complexity:</strong> CAN is more complex and supports multiple masters and a more sophisticated error handling system, while LIN is simpler with a single master and basic error detection via checksum.</li>
             <li><strong>Cost:</strong> LIN is more cost-effective due to its simpler architecture and lower data rate requirements, making it ideal for simpler, less critical applications.</li>
         </ul>
-
+  <div class="example">
+            <p><strong>Example: Sending a LIN Message</strong></p>
+            <code>
+                void setup() { <br>
+                &nbsp;&nbsp;Serial.begin(19200); <br>
+                } <br>
+                void loop() { <br>
+                &nbsp;&nbsp;Serial.write(0x55); // Sync Byte <br>
+                &nbsp;&nbsp;delay(1000); <br>
+                }
+            </code>
+        </div>
         <h2>Conclusion</h2>
         <p>
             The LIN protocol is a simple and cost-effective communication protocol used in automotive and industrial applications. Its single-wire architecture, low data rates, and ease of implementation make it a practical choice for low-cost devices that do not require the higher speeds or complexity of other protocols like CAN. Understanding the key features of LIN, including its packet structure, pin description, and applications, will help in designing efficient systems that use this protocol.
@@ -378,10 +412,28 @@
             <li><strong>Energy Management:</strong> Widely used for communication with energy meters, solar power inverters, and other energy management systems.</li>
             <li><strong>Transportation Systems:</strong> Used in railways, traffic control, and other transportation-related infrastructure.</li>
         </ul>
-
+<div class="example">
+            <p><strong>Example: Sending MODBUS Data Over RS485</strong></p>
+            <code>
+                #include &lt;ModbusRtu.h&gt; <br>
+                Modbus master(0, Serial, 0); <br>
+                void setup() { <br>
+                &nbsp;&nbsp;Serial.begin(9600); <br>
+                &nbsp;&nbsp;master.begin(9600); <br>
+                } <br>
+                void loop() { <br>
+                &nbsp;&nbsp;master.poll(); <br>
+                }
+            </code>
+        </div>
         <h2>Conclusion</h2>
         <p>
             The combination of **RS485** and **MODBUS** provides a robust, reliable, and cost-effective solution for industrial communication. RS485 enables long-distance, noise-resistant data transmission, while MODBUS provides an easy-to-implement, standardized protocol for communication. Together, they are commonly used in applications ranging from industrial automation and energy management to building systems and transportation. By understanding the standards, packet structure, and pin descriptions of both protocols, you can design efficient and scalable systems for a variety of industrial use cases.
+        </p>
+
+        <h2>Conclusion </h2>
+        <p>
+            Understanding different communication protocols like I2C, UART, SPI, LIN, and RS485/MODBUS is essential for embedded system design. Each protocol has specific advantages and use cases, making them suitable for different applications in industrial, automotive, and embedded electronics.
         </p>
     </article>
 
