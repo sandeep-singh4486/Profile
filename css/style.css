@@ -1,6 +1,38 @@
 /* Import Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-
+ body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        article {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 3px 5px;
+            border-radius: 3px;
+        }
+        ul {
+            list-style-type: square;
+        }
 /* Global Styles */
 body {
     font-family: 'Roboto', Arial, sans-serif;
