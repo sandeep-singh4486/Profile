@@ -74,6 +74,82 @@
             UART is a simple, reliable, and efficient protocol for serial communication. It is especially popular in embedded systems and low-level communication applications due to its ease of implementation and low resource requirements. Understanding the UART communication protocol, its standards, packet structure, and pin configuration is essential for designing and troubleshooting embedded systems.
         </p>
     </article>
+         <header>
+        <h1>I2C Communication Protocol</h1>
+    </header>
+    <article>
+        <h2>What is I2C?</h2>
+        <p>
+            The <strong>I2C (Inter-Integrated Circuit)</strong> protocol is a popular communication protocol used in embedded systems, sensors, and microcontroller peripherals. It is a synchronous, multi-master, multi-slave protocol that allows multiple devices to communicate over just two wires: Serial Data (SDA) and Serial Clock (SCL). I2C is particularly useful for systems that need to communicate with a variety of devices, such as sensors, memory chips, and displays, all while using minimal wiring.
+        </p>
+        
+        <h2>Basic I2C Wiring Diagram</h2>
+        <p>Below is an example of a typical I2C wiring setup:</p>
+        <img src="images/i2c_wiring_diagram.png" alt="I2C Wiring Diagram">
+        
+        <h2>I2C Communication Standards</h2>
+        <p>
+            The I2C protocol follows a set of standards that determine how data is exchanged between devices. These standards define key parameters such as data rates, addressing, and the structure of the communication:
+        </p>
+        <ul>
+            <li><strong>Data Rate:</strong> I2C supports different speeds, including:
+                <ul>
+                    <li><strong>Standard Mode:</strong> 100 kbps (kilobits per second)</li>
+                    <li><strong>Fast Mode:</strong> 400 kbps</li>
+                    <li><strong>High-Speed Mode:</strong> 3.4 Mbps (megabits per second)</li>
+                </ul>
+            </li>
+            <li><strong>Addressing:</strong> Each device on the I2C bus must have a unique address. I2C uses 7-bit or 10-bit addressing schemes. Typically, 7-bit addressing allows for up to 127 devices on the bus.</li>
+            <li><strong>Clock Stretching:</strong> Slave devices can hold the clock low to indicate they need more time to process data. This is called clock stretching and is a feature supported by I2C.</li>
+            <li><strong>Master-Slave Communication:</strong> I2C follows a master-slave architecture, where the master initiates communication. Each slave device has a unique address, allowing multiple devices to share the same bus.</li>
+        </ul>
+        
+        <h2>Multi-Master and Multi-Slave Configuration</h2>
+        <p>
+            I2C allows multiple masters to coexist on the same bus. Each master can take control of the bus when it is free, avoiding conflicts using arbitration mechanisms. Similarly, multiple slaves can communicate with the master using their unique addresses.
+        </p>
+        
+        <h2>Common Issues and Troubleshooting</h2>
+        <ul>
+            <li><strong>Address Conflicts:</strong> If multiple devices have the same address, communication may fail. Check the datasheets to change addresses where possible.</li>
+            <li><strong>Pull-Up Resistor Issues:</strong> I2C requires pull-up resistors on SDA and SCL lines. If these are missing or have incorrect values, communication may not work properly.</li>
+            <li><strong>Noise and Interference:</strong> Long wires or poor grounding can introduce noise, leading to data corruption. Keep connections short and shielded if necessary.</li>
+            <li><strong>Clock Stretching Problems:</strong> Some masters do not handle clock stretching correctly, causing issues with slower slave devices.</li>
+        </ul>
+        
+        <h2>Applications of I2C</h2>
+        <ul>
+            <li>Interfacing sensors (e.g., temperature, humidity sensors)</li>
+            <li>Communication with EEPROMs and RTC modules</li>
+            <li>Connecting LCD and OLED displays</li>
+            <li>Used in smartphones and embedded systems</li>
+        </ul>
+        
+        <h2>Real-Time Examples</h2>
+        <div class="example">
+            <p><strong>Example 1: Interfacing a Temperature Sensor (LM75) with Arduino</strong></p>
+            <code>
+                #include &lt;Wire.h&gt; <br>
+                void setup() { <br>
+                &nbsp;&nbsp;Wire.begin(); <br>
+                &nbsp;&nbsp;Serial.begin(9600); <br>
+                } <br>
+                void loop() { <br>
+                &nbsp;&nbsp;Wire.requestFrom(0x48, 2); <br>
+                &nbsp;&nbsp;while(Wire.available()) { <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Serial.print(Wire.read()); <br>
+                &nbsp;&nbsp;} <br>
+                &nbsp;&nbsp;delay(1000); <br>
+                }
+            </code>
+        </div>
+        <p>This code reads temperature data from an LM75 sensor using the I2C protocol.</p>
+        
+        <h2>Conclusion</h2>
+        <p>
+            I2C is a versatile and widely used communication protocol that simplifies the connection of multiple devices using minimal wiring. It supports various speeds, multiple masters, and multiple slaves, making it ideal for embedded systems. Understanding its working principles, addressing, and troubleshooting techniques ensures efficient implementation in real-world applications.
+        </p>
+    </article>
         <header>
         <h1>Understanding SPI Communication Protocol</h1>
     </header>
