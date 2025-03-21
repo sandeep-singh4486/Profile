@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "quizResponses": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "questions": {
+      ".read": "auth != null",
+      ".write": "auth.token.admin === true"
+    }
+  }
+}
