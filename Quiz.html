@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATLAB Learning Management System</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+<div id="login-container">
+    <h2>Login</h2>
+    <input type="email" id="login-email" placeholder="Email">
+    <input type="password" id="login-password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</div>
+<div id="signup-container">
+    <h2>Signup</h2>
+    <input type="text" id="signup-username" placeholder="Username">
+    <input type="email" id="signup-email" placeholder="Email">
+    <input type="password" id="signup-password" placeholder="Password">
+    <button onclick="signup()">Signup</button>
+</div>
+
+    <div class="container">
+        <h1>MATLAB Learning Management System</h1>
+
+        <form id="quiz1">
+            <label>Name:</label>
+            <input type="text" name="name" required><br>
+
+            <label>Email:</label>
+            <input type="email" name="email" required><br>
+
+            <h3>Quiz Questions:</h3>
+            <label>What does MATLAB stand for?</label><br>
+            <input type="radio" name="q1" value="A"> A. Mathematical Laboratory<br>
+            <input type="radio" name="q1" value="B"> B. Matrix Laboratory<br>
+            <input type="radio" name="q1" value="C"> C. Math Lab<br><br>
+
+            <button type="button" onclick="submitQuiz('quiz1')">Submit</button>
+        </form>
+
+        <div id="leaderboard">
+            <h3>Leaderboard - Top Scorers</h3>
+            <ul id="leaderboardList"></ul>
+        </div>
+
+        <div id="analyticsDashboard">
+            <h3>Analytics Dashboard</h3>
+            <p>Total Participants: <span id="totalParticipants">0</span></p>
+            <p>Average Score: <span id="averageScore">0</span></p>
+        </div>
+    </div>
+
+    <!-- Load JavaScript Files -->
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/quiz.js"></script>
+    <script type="module" src="js/leaderboard.js"></script>
+    <script type="module" src="js/analytics.js"></script>
+    <script type="module" src="js/email.js"></script>
+
+</body>
+</html>

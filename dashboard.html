@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script type="module" src="js/admin.js"></script>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    
+    <button onclick="logout()">Logout</button>
+
+    <h2>Manage Questions</h2>
+    <input type="text" id="new-question" placeholder="Enter new question">
+    <button onclick="addQuestion()">Add Question</button>
+
+    <h2>User Scores</h2>
+    <ul id="user-scores"></ul>
+
+    <h2>Manage Users</h2>
+    <ul id="user-list"></ul>
+</body>
+</html>
