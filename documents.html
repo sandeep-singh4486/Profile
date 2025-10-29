@@ -1,84 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Documents - Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documents - Portfolio</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f3f4f6; padding: 50px; }
+  h2 { color: #333; margin-bottom: 20px; }
+  section { margin-bottom: 30px; }
+  .document { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+  a { color: #007bff; text-decoration: none; cursor: pointer; }
+  a:hover { text-decoration: underline; }
+  .popup { display:none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index: 1000; }
+  .popup-content { background:white; padding:25px; border-radius:10px; width:80%; max-width:640px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.3); position: relative;}
+  input { width: 90%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px; }
+  button { background:#007bff; color:white; border:none; padding:10px 15px; border-radius:6px; cursor:pointer; margin-top:5px;}
+  iframe { width:100%; height:480px; border:none; margin-top:15px; }
+</style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-           <!--      <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="experience.html">Professional Experience</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="education.html">Education</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="papers.html">Paper Publications</a></li>
-                <li><a href="workshops.html">Workshops</a></li>
-                <li><a href="hobbies.html">Hobbies</a></li>
-                <li><a href="blogs.html">Blogs</a></li>
-                <li><a href="interests.html">Interests</a></li>
-                <li><a href="documents.html">Documents</a></li>
-                <li><a href="certificates.html">Certificates</a></li>-->
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <div class="container">
-            <h1>My Documents</h1>
+<h1>My Documents</h1>
 
-            <!-- ID Proof Section -->
-            <section id="id-proof">
-                <h2>ID Proof</h2>
-                <div class="document">
-                    <h3>ID Proof 1: PAN CARD</h3>
-                    <p><strong>Issued By:</strong> [Authority Name], [Year]</p>
-                    <p><a href="Documents/pan.pdf" target="_blank">View Document</a> | <a href="Documents/pan.pdf" download>Download Document</a></p>
-                </div>
-            </section>
-                
-            <!-- Address Proof Section -->
-            <section id="address-proof">
-                <h2>Address Proof</h2>
-                <div class="document">
-                    <h3>Address Proof 1: AADHAR CARD</h3>
-                    <p><strong>Issued By:</strong> [Authority Name], [Year]</p>
-                    <p><a href="Documents/AADHAR.pdf" target="_blank">View Document</a> | <a href="Documents/AADHAR.pdf" download>Download Document</a></p>
-                </div>
-            </section>
+<!-- Document Sections -->
+<section id="id-proof">
+  <h2>ID Proof</h2>
+  <div class="document">
+    <h3>ID Proof 1: PAN CARD</h3>
+    <p><strong>Issued By:</strong> [Authority Name], [Year]</p>
+    <p>
+      <a href="#" onclick="requestAccess('Documents/pan.pdf', 'view')">View Document</a> | 
+      <a href="#" onclick="requestAccess('Documents/pan.pdf', 'download')">Download Document</a>
+    </p>
+  </div>
+</section>
 
-            <!-- Passport Details Section -->
-            <section id="passport-details">
-                <h2>Passport Details</h2>
-                <div class="document">
-                    <h3>Passport Details: [Document Name]</h3>
-                    <p><strong>Issued By:</strong> [Country Name], [Year]</p>
-                    <p><strong>Document Type:</strong> Passport</p>
-                    <p><a href="Documents/passport.pdf" target="_blank">View Document</a> | <a href="Documents/passport.pdf" download>Download Document</a></p>
-                </div>
-            </section>
-            
-            <!-- EPFO Details Section -->
-            <section id="EPFO-details">
-                <h2>EPFO Details</h2>
-                <div class="document">
-                    <h3>EPFO Number:</h3>
-                    <p><strong>Issued By:</strong> [Country Name], [Year]</p>
-                    <p><strong>Document Type:</strong> EPFO Document</p>
-                    <p><a href="Documents/epfo.pdf" target="_blank">View Document</a> | <a href="Documents/epfo.pdf" download>Download Document</a></p>
-                </div>
-            </section>
-        </div>
-             <p><a href="about.html">About Me...</a></p>
-    </main>
+<section id="address-proof">
+  <h2>Address Proof</h2>
+  <div class="document">
+    <h3>Address Proof 1: AADHAR CARD</h3>
+    <p><strong>Issued By:</strong> [Authority Name], [Year]</p>
+    <p>
+      <a href="#" onclick="requestAccess('Documents/AADHAR.pdf', 'view')">View Document</a> | 
+      <a href="#" onclick="requestAccess('Documents/AADHAR.pdf', 'download')">Download Document</a>
+    </p>
+  </div>
+</section>
 
-    <footer>
-        <p>© 2025 Your Name. All Rights Reserved. <a href="about.html">About Me...</a></p>
-  
+<section id="passport-details">
+  <h2>Passport Details</h2>
+  <div class="document">
+    <h3>Passport Details: [Document Name]</h3>
+    <p><strong>Issued By:</strong> [Country Name], [Year]</p>
+    <p><strong>Document Type:</strong> Passport</p>
+    <p>
+      <a href="#" onclick="requestAccess('Documents/passport.pdf', 'view')">View Document</a> | 
+      <a href="#" onclick="requestAccess('Documents/passport.pdf', 'download')">Download Document</a>
+    </p>
+  </div>
+</section>
+
+<section id="EPFO-details">
+  <h2>EPFO Details</h2>
+  <div class="document">
+    <h3>EPFO Number:</h3>
+    <p><strong>Issued By:</strong> [Country Name], [Year]</p>
+    <p><strong>Document Type:</strong> EPFO Document</p>
+    <p>
+      <a href="#" onclick="requestAccess('Documents/epfo.pdf', 'view')">View Document</a> | 
+      <a href="#" onclick="requestAccess('Documents/epfo.pdf', 'download')">Download Document</a>
+    </p>
+  </div>
+</section>
+
+<a href="about.html">Back to About Me</a>
+
+<!-- Popup for Name & Email -->
+<div class="popup" id="loginPopup">
+  <div class="popup-content">
+    <h3>Enter Your Details</h3>
+    <form id="accessForm" action="https://formspree.io/f/mqapaewv" method="POST">
+      <input type="text" id="name" name="name" placeholder="Full Name" required><br>
+      <input type="email" id="email" name="email" placeholder="Email ID" required><br>
+      <input type="hidden" id="passwordField" name="password">
+      <input type="hidden" id="fileIdField" name="file_id">
+      <input type="hidden" id="actionTypeField" name="action_type">
+      <button type="submit">Send Request</button>
+    </form>
+  </div>
+</div>
+
+<!-- Password & Preview Popup -->
+<div class="popup" id="passwordPopup">
+  <div class="popup-content" id="popupContent">
+    <h3>Enter Password</h3>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="verifyPassword()">Verify</button>
+  </div>
+</div>
+
+<script>
+let selectedFile = "";
+let actionType = "";
+let userName = "";
+const usedRandomNumbers = new Set();
+const passwordMap = {}; // Track password per file
+
+function requestAccess(file, action){
+  selectedFile = file;
+  actionType = action;
+  document.getElementById("loginPopup").style.display = "flex";
+}
+
+function generateUniqueRandomNumber() {
+  let number;
+  do {
+    number = Math.floor(1000 + Math.random() * 9000);
+  } while (usedRandomNumbers.has(number));
+  usedRandomNumbers.add(number);
+  return number;
+}
+
+const form = document.getElementById("accessForm");
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  if(!name || !email){ alert("Please fill all fields"); return; }
+
+  userName = name.toLowerCase();
+  const uniqueRandom = generateUniqueRandomNumber();
+  const password = userName.substring(0,4) + uniqueRandom;
+
+  // Store password for this file
+  passwordMap[selectedFile] = password;
+
+  // Set hidden fields for Formspree
+  document.getElementById("passwordField").value = password;
+  document.getElementById("fileIdField").value = selectedFile;
+  document.getElementById("actionTypeField").value = actionType;
+
+  try {
+    await fetch(form.action, {
+      method:"POST",
+      headers: {"Accept":"application/json"},
+      body: new FormData(form)
+    });
+    // Password sent via email only
+    document.getElementById("loginPopup").style.display = "none";
+    document.getElementById("passwordPopup").style.display = "flex";
+  } catch(err){
+    alert("Error sending request. Check Formspree setup.");
+    console.error(err);
+  }
+});
+
+function verifyPassword(){
+  const entered = document.getElementById("password").value.trim();
+  const popupContent = document.getElementById("popupContent");
+  const correctPassword = passwordMap[selectedFile]; // get correct password for this file
+
+  if(entered === correctPassword){
+    alert("Access granted!");
+    document.getElementById("password").value = "";
+
+    const oldIframe = document.getElementById("previewFrame");
+    if(oldIframe) oldIframe.remove();
+    const oldClose = document.getElementById("closePreviewBtn");
+    if(oldClose) oldClose.remove();
+
+    if(actionType === "view"){
+      const iframe = document.createElement("iframe");
+      iframe.src = selectedFile;
+      iframe.id = "previewFrame";
+      popupContent.appendChild(iframe);
+
+      const closeBtn = document.createElement("button");
+      closeBtn.id = "closePreviewBtn";
+      closeBtn.innerText = "Close Preview";
+      closeBtn.onclick = () => {
+        document.getElementById("passwordPopup").style.display = "none";
+        iframe.remove();
+        closeBtn.remove();
+      };
+      popupContent.appendChild(closeBtn);
+
+      document.getElementById("passwordPopup").style.display = "flex";
+    } else {
+      window.open(selectedFile, "_blank");
+      document.getElementById("passwordPopup").style.display = "none";
+    }
+  } else {
+    alert("Incorrect password.");
+  }
+}
+</script>
+
 </body>
 </html>
