@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Documents</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f3f4f6; padding: 50px; }
+  h1, h2 { color: #333; }
+  section { margin-bottom: 30px; }
+  .document {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  a { color: #007bff; text-decoration: none; cursor: pointer; }
+  a:hover { text-decoration: underline; }
+  .popup {
+    display:none;
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index: 1000;
+  }
+  .popup-content {
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    width:80%;
+    max-width:640px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  input {
+    width: 90%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+  }
+  button {
+    background:#007bff;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:5px;
+  }
+  iframe {
+    width:100%;
+    height:480px;
+    border:none;
+    margin-top:15px;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>My Documents</h1>
+
+<!-- ID Proof -->
+<section id="id-proof">
+  <h2>ID Proof</h2>
+  <div class="document">
+    <h3>PAN Card</h3>
+    <p><strong>Issued By:</strong> Income Tax Department, Government of India</p>
+    <p><strong>Year of Issue:</strong> [Year]</p>
+    <p>
+      <a href="#" onclick="requestAccess('Documents/pan.pdf', 'view')">View Document</a> |
+      <a href="#" onclick="requestAccess('Documents/pan.pdf', 'download')">Download Document</a>
+    </p>
+  </div>
+</section>
+
+<!-- Address Proof -->
+<section id="address-proof">
+  <h2>Address Proof</h2>
+  <div class="document">
+    <h3>Aadhaar Card</h3>
+    <p><strong>Issued By:</strong> Unique Identification Authority of India (UIDAI), Government of India</p>
+    <p><strong>Year of Issue:</strong> [Year]</p>
+    <p>
+      <a href="#" onclick="requestAccess('Documents/AADHAR.pdf', 'view')">View Document</a> |
+      <a href="#" onclick="requestAccess('Documents/AADHAR.pdf', 'download')">Download Document</a>
+    </p>
+  </div>
+</section>
+
+<!-- Passport -->
+<section id="passport-details">
+  <h2>Passport Details</h2>
+  <div class="document">
+    <h3>Passport</h3>
+    <p><strong>Issued By:</strong> Ministry of External Affairs, Government of India</p>
+    <p><strong>Document Type:</strong> Passport</p>
+    <p><strong>Year of Issue:</strong> [Year]</p>
+    <p>
+      <a href="#" onclick="requestAccess('Documents/passport.pdf', 'view')">View Document</a> |
+      <a href="#" onclick="requestAccess('Documents/passport.pdf', 'download')">Download Document</a>
+    </p>
+  </div>
+</section>
+
+<!-- EPFO -->
+<section id="epfo-details">
+  <h2>EPFO Details</h2>
+  <div class="document">
+    <h3>EPFO Account</h3>
+    <p><strong>EPFO Number:</strong> [EPFO Number]</p>
+    <p><strong>Issued By:</strong> Employees’ Provident Fund Organisation (EPFO), Ministry of Labour & Employment, Government of India</p>
+    <p><strong>Document Type:</strong> EPFO Document</p>
+    <p><strong>Year of Issue:</strong> [Year]</p>
+    <p>
+      <a href="#" onclick="requestAccess('Documents/epfo.pdf', 'view')">View Document</a> |
+      <a href="#" onclick="requestAccess('Documents/epfo.pdf', 'download')">Download Document</a>
+    </p>
+  </div>
+</section>
+
+<a href="about.html">← Back to About Me</a>
+
+<!-- Login Popup -->
+<div class="popup" id="loginPopup">
+  <div class="popup-content">
+    <h3>Enter Your Details</h3>
+    <form id="accessForm" action="https://formspree.io/f/mqapaewv" method="POST">
+      <input type="text" id="name" name="name" placeholder="Full Name" required>
+      <input type="email" id="email" name="email" placeholder="Email ID" required>
+      <input type="hidden" id="passwordField" name="password">
+      <input type="hidden" id="fileIdField" name="file_id">
+      <input type="hidden" id="actionTypeField" name="action_type">
+      <button type="submit">Send Request</button>
+    </form>
+  </div>
+</div>
+
+<!-- Password Popup -->
+<div class="popup" id="passwordPopup">
+  <div class="popup-content" id="popupContent">
+    <h3>Enter Password</h3>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="verifyPassword()">Verify</button>
+  </div>
+</div>
+
+<script>
+let selectedFile = "";
+let actionType = "";
+const usedRandomNumbers = new Set();
+const passwordMap = {};
+
+function requestAccess(file, action){
+  selectedFile = file;
+  actionType = action;
+  document.getElementById("loginPopup").style.display = "flex";
+}
+
+function generateUniqueRandomNumber() {
+  let number;
+  do {
+    number = Math.floor(1000 + Math.random() * 9000);
+  } while (usedRandomNumbers.has(number));
+  usedRandomNumbers.add(number);
+  return number;
+}
+
+const form = document.getElementById("accessForm");
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  if(!name || !email){ alert("Please fill all fields"); return; }
+
+  const password = name.toLowerCase().substring(0,4) + generateUniqueRandomNumber();
+  passwordMap[selectedFile] = password;
+
+  document.getElementById("passwordField").value = password;
+  document.getElementById("fileIdField").value = selectedFile;
+  document.getElementById("actionTypeField").value = actionType;
+
+  await fetch(form.action, {
+    method:"POST",
+    headers: {"Accept":"application/json"},
+    body: new FormData(form)
+  });
+
+  document.getElementById("loginPopup").style.display = "none";
+  document.getElementById("passwordPopup").style.display = "flex";
+});
+
+function verifyPassword(){
+  const entered = document.getElementById("password").value.trim();
+  const correctPassword = passwordMap[selectedFile];
+
+  if(entered === correctPassword){
+    if(actionType === "view"){
+      const iframe = document.createElement("iframe");
+      iframe.src = selectedFile;
+      document.getElementById("popupContent").appendChild(iframe);
+    } else {
+      window.open(selectedFile, "_blank");
+      document.getElementById("passwordPopup").style.display = "none";
+    }
+  } else {
+    alert("Incorrect password.");
+  }
+}
+</script>
+
+</body>
+</html>

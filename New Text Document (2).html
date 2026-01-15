@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Documents</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    padding: 40px;
+  }
+  h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+  }
+  th {
+    background: #f9fafb;
+    font-weight: bold;
+  }
+  tr:last-child td {
+    border-bottom: none;
+  }
+  a {
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Popups */
+  .popup {
+    display:none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index: 1000;
+  }
+  .popup-content {
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    width:80%;
+    max-width:640px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  }
+  input {
+    width: 90%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+  }
+  button {
+    background:#007bff;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:8px;
+  }
+  iframe {
+    width:100%;
+    height:480px;
+    border:none;
+    margin-top:15px;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>My Documents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Document</th>
+      <th>Issuing Authority</th>
+      <th>Year</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ID Proof</td>
+      <td>PAN Card</td>
+      <td>Income Tax Department, Government of India</td>
+      <td>[Year]</td>
+      <td>
+        <a onclick="requestAccess('Documents/pan.pdf','view')">View</a> |
+        <a onclick="requestAccess('Documents/pan.pdf','download')">Download</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Address Proof</td>
+      <td>Aadhaar Card</td>
+      <td>UIDAI, Government of India</td>
+      <td>[Year]</td>
+      <td>
+        <a onclick="requestAccess('Documents/AADHAR.pdf','view')">View</a> |
+        <a onclick="requestAccess('Documents/AADHAR.pdf','download')">Download</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Passport</td>
+      <td>Passport</td>
+      <td>Ministry of External Affairs, Government of India</td>
+      <td>[Year]</td>
+      <td>
+        <a onclick="requestAccess('Documents/passport.pdf','view')">View</a> |
+        <a onclick="requestAccess('Documents/passport.pdf','download')">Download</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>EPFO</td>
+      <td>EPFO Account<br><small>[EPFO Number]</small></td>
+      <td>EPFO, Ministry of Labour & Employment, Government of India</td>
+      <td>[Year]</td>
+      <td>
+        <a onclick="requestAccess('Documents/epfo.pdf','view')">View</a> |
+        <a onclick="requestAccess('Documents/epfo.pdf','download')">Download</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<a href="about.html">← Back to About Me</a>
+
+<!-- Login Popup -->
+<div class="popup" id="loginPopup">
+  <div class="popup-content">
+    <h3>Enter Your Details</h3>
+    <form id="accessForm" action="https://formspree.io/f/mqapaewv" method="POST">
+      <input type="text" id="name" name="name" placeholder="Full Name" required>
+      <input type="email" id="email" name="email" placeholder="Email ID" required>
+      <input type="hidden" id="passwordField" name="password">
+      <input type="hidden" id="fileIdField" name="file_id">
+      <input type="hidden" id="actionTypeField" name="action_type">
+      <button type="submit">Send Request</button>
+    </form>
+  </div>
+</div>
+
+<!-- Password Popup -->
+<div class="popup" id="passwordPopup">
+  <div class="popup-content" id="popupContent">
+    <h3>Enter Password</h3>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="verifyPassword()">Verify</button>
+  </div>
+</div>
+
+<script>
+let selectedFile = "";
+let actionType = "";
+const passwordMap = {};
+const usedRandomNumbers = new Set();
+
+function requestAccess(file, action){
+  selectedFile = file;
+  actionType = action;
+  document.getElementById("loginPopup").style.display = "flex";
+}
+
+function generateUniqueRandomNumber() {
+  let num;
+  do {
+    num = Math.floor(1000 + Math.random() * 9000);
+  } while (usedRandomNumbers.has(num));
+  usedRandomNumbers.add(num);
+  return num;
+}
+
+document.getElementById("accessForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const name = nameField.value.trim();
+  const email = emailField.value.trim();
+  if(!name || !email) return alert("Fill all fields");
+
+  const password = name.toLowerCase().substring(0,4) + generateUniqueRandomNumber();
+  passwordMap[selectedFile] = password;
+
+  passwordField.value = password;
+  fileIdField.value = selectedFile;
+  actionTypeField.value = actionType;
+
+  await fetch(this.action, {
+    method: "POST",
+    headers: { "Accept": "application/json" },
+    body: new FormData(this)
+  });
+
+  loginPopup.style.display = "none";
+  passwordPopup.style.display = "flex";
+});
+
+function verifyPassword(){
+  if(password.value === passwordMap[selectedFile]){
+    if(actionType === "view"){
+      const iframe = document.createElement("iframe");
+      iframe.src = selectedFile;
+      popupContent.appendChild(iframe);
+    } else {
+      window.open(selectedFile, "_blank");
+      passwordPopup.style.display = "none";
+    }
+  } else {
+    alert("Incorrect password");
+  }
+}
+</script>
+
+</body>
+</html>
