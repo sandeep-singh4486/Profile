@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Sandeep Singh R</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#0a0f1e;--navy2:#111827;--card:#151d30;--border:#1e2d45;--gold:#f0a500;--gold2:#ffc73a;--teal:#00c9a7;--text:#e2e8f0;--muted:#8898aa;--white:#ffffff;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 5%;background:rgba(10,15,30,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;color:var(--white);text-decoration:none;}
+    .nav-logo span{color:var(--gold);}
+    .nav-links{display:flex;gap:1.8rem;list-style:none;}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s;position:relative;}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--gold);transition:width 0.3s;}
+    .nav-links a:hover{color:var(--white);}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+    .nav-links a.active{color:var(--gold);}
+    .nav-cta{background:var(--gold)!important;color:var(--navy)!important;padding:0.45rem 1.1rem;border-radius:6px;font-weight:700!important;}
+    .nav-cta::after{display:none!important;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--white);}
+    .mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:var(--navy2);border-bottom:1px solid var(--border);padding:1.5rem 5%;z-index:99;flex-direction:column;gap:1.2rem;}
+    .mobile-menu a{color:var(--text);text-decoration:none;}
+    .mobile-menu.open{display:flex;}
+    .page-hero{padding:7rem 5% 3rem;background:var(--navy2);border-bottom:1px solid var(--border);position:relative;z-index:1;}
+    .page-hero-inner{max-width:1200px;margin:0 auto;}
+    .breadcrumb{font-size:0.78rem;color:var(--muted);margin-bottom:1rem;}
+    .breadcrumb a{color:var(--gold);text-decoration:none;}
+    .breadcrumb span{margin:0 0.4rem;}
+    .page-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;color:var(--white);letter-spacing:-1px;margin-bottom:0.5rem;}
+    .page-title span{color:var(--gold);}
+    .page-sub{color:var(--muted);font-size:1rem;max-width:520px;}
+    section{padding:4rem 5%;position:relative;z-index:1;}
+    .section-inner{max-width:1200px;margin:0 auto;}
+    .divider{width:50px;height:3px;background:linear-gradient(90deg,var(--gold),var(--teal));border-radius:2px;margin-bottom:1.5rem;}
+    /* CONTACT GRID */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+    /* CONTACT INFO */
+    .contact-info{display:flex;flex-direction:column;gap:1rem;}
+    .ci-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--white);margin-bottom:0.5rem;}
+    .ci-desc{color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:1rem;}
+    .ci-item{display:flex;gap:1rem;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;text-decoration:none;color:var(--text);transition:all 0.25s;}
+    .ci-item:hover{border-color:var(--gold);transform:translateX(5px);}
+    .ci-icon{font-size:1.4rem;flex-shrink:0;}
+    .ci-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+    .ci-value{font-weight:600;color:var(--white);font-size:0.88rem;}
+    /* AVAILABLE BOX */
+    .available-box{background:rgba(0,201,167,0.06);border:1px solid rgba(0,201,167,0.25);border-radius:12px;padding:1.2rem;margin-top:0.5rem;}
+    .avail-title{display:flex;align-items:center;gap:0.5rem;font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:var(--teal);margin-bottom:0.4rem;}
+    .avail-title::before{content:'●';font-size:0.5rem;animation:blink 1.5s infinite;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+    .avail-desc{font-size:0.82rem;color:var(--muted);}
+    .avail-roles{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.7rem;}
+    .avail-role{font-size:0.75rem;padding:0.2rem 0.7rem;background:rgba(0,201,167,0.1);border:1px solid rgba(0,201,167,0.2);color:var(--teal);border-radius:4px;font-weight:600;}
+    /* FORM */
+    .form-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden;}
+    .form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--teal));}
+    .form-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--white);margin-bottom:0.3rem;}
+    .form-sub{font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .form-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;}
+    .form-group label{font-size:0.78rem;font-weight:600;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;}
+    .form-group input,.form-group textarea,.form-group select{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.75rem 1rem;outline:none;transition:border-color 0.25s;resize:vertical;}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold);}
+    .form-group textarea{min-height:120px;}
+    .form-group select option{background:var(--navy2);}
+    .btn-submit{width:100%;background:var(--gold);color:var(--navy);border:none;font-family:'DM Sans',sans-serif;font-weight:700;font-size:0.95rem;padding:0.9rem;border-radius:8px;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;justify-content:center;gap:0.5rem;}
+    .btn-submit:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,165,0,0.3);}
+    .form-note{font-size:0.74rem;color:var(--muted);margin-top:0.8rem;text-align:center;}
+    .form-note a{color:var(--teal);text-decoration:none;}
+    .success-msg{display:none;background:rgba(0,201,167,0.1);border:1px solid rgba(0,201,167,0.3);border-radius:8px;padding:1rem;color:var(--teal);font-size:0.88rem;text-align:center;margin-top:1rem;}
+    /* QUICK CONNECT */
+    #quick{background:var(--navy2);}
+    .quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+    .quick-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;text-align:center;text-decoration:none;color:inherit;transition:all 0.3s;display:block;}
+    .quick-card:hover{transform:translateY(-5px);border-color:rgba(240,165,0,0.3);box-shadow:0 16px 40px rgba(0,0,0,0.3);}
+    .quick-icon{font-size:2rem;margin-bottom:0.7rem;}
+    .quick-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;color:var(--white);margin-bottom:0.3rem;}
+    .quick-handle{font-size:0.75rem;color:var(--muted);}
+    .fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .fade-in.visible{opacity:1;transform:translateY(0);}
+    footer{background:var(--navy);border-top:1px solid var(--border);padding:2rem 5%;text-align:center;color:var(--muted);font-size:0.82rem;position:relative;z-index:1;}
+    footer a{color:var(--gold);text-decoration:none;}
+    .scroll-top{position:fixed;bottom:2rem;right:2rem;background:var(--gold);color:var(--navy);width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer;z-index:99;opacity:0;transform:translateY(10px);transition:all 0.3s;text-decoration:none;}
+    .scroll-top.visible{opacity:1;transform:translateY(0);}
+    @media(max-width:900px){.contact-grid{grid-template-columns:1fr;}.quick-grid{grid-template-columns:repeat(2,1fr);}.form-row{grid-template-columns:1fr;}.nav-links{display:none;}.hamburger{display:flex;}}
+    @media(max-width:600px){.quick-grid{grid-template-columns:repeat(2,1fr);}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Sandeep<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="certificates.html">Education</a></li>
+    <li><a href="papers.html">Publications</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+    <li><a href="documents.html" class="nav-cta">📄 Resume</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mm">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a>
+  <a href="certificates.html">Education</a><a href="papers.html">Publications</a>
+  <a href="contact.html">Contact</a><a href="documents.html">📄 Resume</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>›</span>Contact</div>
+    <h1 class="page-title">Get In <span>Touch</span></h1>
+    <p class="page-sub">Open to Senior Project Manager and Associate Product Manager opportunities in Bengaluru, Pune, or remote. Let's connect.</p>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid fade-in">
+
+      <!-- LEFT: Info -->
+      <div>
+        <h2 class="ci-title">Let's Talk</h2>
+        <p class="ci-desc">Whether you're a recruiter with a role, a fellow engineer, or someone interested in collaborating — I'd love to hear from you. Fill the form or reach me directly through any channel below.</p>
+        <div class="contact-info">
+          <a href="mailto:sandeepec035@gmail.com" class="ci-item">
+            <span class="ci-icon">📧</span>
+            <div><div class="ci-label">Email</div><div class="ci-value">sandeepec035@gmail.com</div></div>
+          </a>
+          <a href="tel:+917406050506" class="ci-item">
+            <span class="ci-icon">📱</span>
+            <div><div class="ci-label">Primary Phone</div><div class="ci-value">+91 7406050506</div></div>
+          </a>
+          <a href="tel:+917975062764" class="ci-item">
+            <span class="ci-icon">📞</span>
+            <div><div class="ci-label">Alternate Phone</div><div class="ci-value">+91 7975062764</div></div>
+          </a>
+          <a href="https://www.linkedin.com/in/sandeep-singh7406050506" target="_blank" class="ci-item">
+            <span class="ci-icon">💼</span>
+            <div><div class="ci-label">LinkedIn</div><div class="ci-value">linkedin.com/in/sandeep-singh7406050506</div></div>
+          </a>
+          <a href="https://github.com/sandeep-singh4486" target="_blank" class="ci-item">
+            <span class="ci-icon">🐙</span>
+            <div><div class="ci-label">GitHub</div><div class="ci-value">github.com/sandeep-singh4486</div></div>
+          </a>
+          <a href="https://www.youtube.com/watch?v=xQRwqpBrr8c" target="_blank" class="ci-item">
+            <span class="ci-icon">▶️</span>
+            <div><div class="ci-label">Video Introduction</div><div class="ci-value">Watch on YouTube</div></div>
+          </a>
+        </div>
+        <div class="available-box" style="margin-top:1.2rem;">
+          <div class="avail-title">Currently Open to Work</div>
+          <div class="avail-desc">Actively seeking opportunities in Bengaluru, Pune, and open to relocation for the right role.</div>
+          <div class="avail-roles">
+            <span class="avail-role">Senior Project Manager</span>
+            <span class="avail-role">Associate Product Manager</span>
+            <span class="avail-role">R&D Manager</span>
+            <span class="avail-role">Program Manager</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="form-card">
+        <div class="form-title">Send a Message</div>
+        <div class="form-sub">I typically respond within 24 hours.</div>
+        <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name *</label>
+              <input type="text" name="name" placeholder="John Doe" required/>
+            </div>
+            <div class="form-group">
+              <label>Company</label>
+              <input type="text" name="company" placeholder="Acme Corp"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" name="email" placeholder="john@company.com" required/>
+          </div>
+          <div class="form-group">
+            <label>Subject / Role</label>
+            <select name="subject">
+              <option value="">— Select a topic —</option>
+              <option>Job Opportunity — Senior Project Manager</option>
+              <option>Job Opportunity — Product Manager</option>
+              <option>Job Opportunity — R&D / Program Manager</option>
+              <option>Collaboration / Partnership</option>
+              <option>Workshop / Speaking Engagement</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message *</label>
+            <textarea name="message" placeholder="Tell me about the opportunity, project, or how I can help..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">✉️ Send Message</button>
+          <div class="success-msg" id="successMsg">✅ Message sent successfully! I'll get back to you within 24 hours.</div>
+          <p class="form-note">⚡ To activate this form: <a href="https://formspree.io/f/mqapaewv" target="_blank">create a free Formspree account</a> and replace <code>YOUR_FORM_ID</code> in the form action URL.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK CONNECT -->
+<section id="quick">
+  <div class="section-inner">
+    <div class="divider"></div>
+    <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;color:var(--white);margin-bottom:0.5rem;">Quick Connect</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:2rem;">Find me across platforms</p>
+    <div class="quick-grid fade-in">
+      <a href="mailto:sandeepec035@gmail.com" class="quick-card">
+        <div class="quick-icon">📧</div>
+        <div class="quick-title">Email</div>
+        <div class="quick-handle">sandeepec035@gmail.com</div>
+      </a>
+      <a href="https://www.linkedin.com/in/sandeep-singh7406050506" target="_blank" class="quick-card">
+        <div class="quick-icon">💼</div>
+        <div class="quick-title">LinkedIn</div>
+        <div class="quick-handle">sandeep-singh7406050506</div>
+      </a>
+      <a href="https://github.com/sandeep-singh4486" target="_blank" class="quick-card">
+        <div class="quick-icon">🐙</div>
+        <div class="quick-title">GitHub</div>
+        <div class="quick-handle">sandeep-singh4486</div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=xQRwqpBrr8c" target="_blank" class="quick-card">
+        <div class="quick-icon">▶️</div>
+        <div class="quick-title">YouTube</div>
+        <div class="quick-handle">Video Introduction</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <a href="index.html">Sandeep Singh R</a> · PMP® Certified Project & Product Manager · Bengaluru, India</p>
+  <p style="margin-top:0.4rem;">📍 Bengaluru, Karnataka | Open to Bengaluru · Pune · Remote · Relocation</p>
+</footer>
+<a href="#" class="scroll-top" id="scrollTop">↑</a>
+<script>
+  window.addEventListener('scroll',()=>{document.getElementById('scrollTop').classList.toggle('visible',scrollY>400);});
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}}),{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+  // Form submit feedback
+  const form=document.getElementById('contactForm');
+  if(form){
+    form.addEventListener('submit',function(e){
+      const btn=document.getElementById('submitBtn');
+      btn.textContent='Sending...';
+      btn.disabled=true;
+      setTimeout(()=>{
+        document.getElementById('successMsg').style.display='block';
+        btn.textContent='✉️ Send Message';
+        btn.disabled=false;
+      },1500);
+    });
+  }
+</script>
+</body>
+</html>
