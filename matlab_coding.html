@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MATLAB for Engineers — Video Course — Sandeep Singh R</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#0a0f1e;--navy2:#111827;--card:#151d30;--border:#1e2d45;--gold:#f0a500;--gold2:#ffc73a;--teal:#00c9a7;--text:#e2e8f0;--muted:#8898aa;--white:#ffffff;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+    #rp{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--teal));z-index:200;width:0;transition:width 0.1s linear;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 5%;background:rgba(10,15,30,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);text-decoration:none;} .nav-logo span{color:var(--gold);}
+    .nav-links{display:flex;gap:1.6rem;list-style:none;}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:0.86rem;font-weight:500;transition:color 0.2s;position:relative;}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--gold);transition:width 0.3s;}
+    .nav-links a:hover{color:var(--white);} .nav-links a:hover::after,.nav-links a.active::after{width:100%;} .nav-links a.active{color:var(--gold);}
+    .nav-cta{background:var(--gold)!important;color:var(--navy)!important;padding:0.4rem 1rem;border-radius:6px;font-weight:700!important;} .nav-cta::after{display:none!important;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;} .hamburger span{display:block;width:22px;height:2px;background:var(--white);}
+    .mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--navy2);border-bottom:1px solid var(--border);padding:1.5rem 5%;z-index:99;flex-direction:column;gap:1.2rem;}
+    .mobile-menu a{color:var(--text);text-decoration:none;font-size:1rem;} .mobile-menu.open{display:flex;}
+    /* PAGE LAYOUT */
+    .page-wrap{max-width:1100px;margin:0 auto;padding:5.5rem 5% 4rem;position:relative;z-index:1;}
+    /* HERO */
+    .course-hero{display:grid;grid-template-columns:1fr 320px;gap:2.5rem;align-items:start;margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border);}
+    .article-cat{display:inline-flex;font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:50px;margin-bottom:0.9rem;background:rgba(239,68,68,0.1);color:#fca5a5;border:1px solid rgba(239,68,68,0.25);}
+    h1.article-title{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:800;color:var(--white);letter-spacing:-1px;line-height:1.15;margin-bottom:0.9rem;}
+    .article-excerpt{font-size:0.95rem;color:var(--muted);line-height:1.8;margin-bottom:1.2rem;}
+    .a-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem;}
+    .atag{font-size:0.7rem;padding:0.18rem 0.6rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--muted);border-radius:4px;}
+    .course-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.7rem;}
+    .cs-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.9rem;text-align:center;}
+    .cs-num{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--gold);}
+    .cs-label{font-size:0.72rem;color:var(--muted);margin-top:0.2rem;}
+    /* COURSE SIDEBAR */
+    .course-info-card{background:var(--card);border:1px solid rgba(240,165,0,0.2);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden;}
+    .course-info-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--teal));}
+    .ci-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--white);margin-bottom:1rem;}
+    .ci-list{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+    .ci-list li{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.82rem;color:var(--muted);}
+    .ci-list li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0;}
+    /* SECTION TITLES */
+    .sec-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--white);margin-bottom:0.4rem;}
+    .sec-sub{color:var(--muted);font-size:0.88rem;margin-bottom:1.8rem;}
+    .divider{width:48px;height:3px;background:linear-gradient(90deg,var(--gold),var(--teal));border-radius:2px;margin-bottom:1rem;}
+    /* VIDEO GRID */
+    .videos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:3rem;}
+    .video-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s;}
+    .video-card:hover{border-color:rgba(240,165,0,0.3);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.3);}
+    .video-thumb{position:relative;padding-top:56.25%;background:var(--navy);}
+    .video-thumb iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+    .video-body{padding:1.1rem 1.2rem;}
+    .ch-num{font-size:0.68rem;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:0.3rem;}
+    .ch-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;color:var(--white);margin-bottom:0.3rem;line-height:1.3;}
+    .ch-desc{font-size:0.78rem;color:var(--muted);line-height:1.5;}
+    /* TOPICS LIST */
+    .topics-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;margin-bottom:3rem;}
+    .topic-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.9rem 1rem;display:flex;align-items:center;gap:0.8rem;transition:border-color 0.25s;}
+    .topic-item:hover{border-color:rgba(0,201,167,0.3);}
+    .ti-icon{font-size:1.3rem;flex-shrink:0;}
+    .ti-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.84rem;color:var(--white);}
+    .ti-desc{font-size:0.74rem;color:var(--muted);}
+    /* AUTHOR */
+    .author-bio{background:var(--card);border:1px solid rgba(240,165,0,0.2);border-radius:16px;padding:1.4rem;display:flex;gap:1.1rem;align-items:center;margin-bottom:2rem;}
+    .author-photo{width:65px;height:65px;border-radius:50%;border:2px solid var(--gold);flex-shrink:0;background:linear-gradient(135deg,var(--gold),var(--teal));}
+    .author-name{font-family:'Syne',sans-serif;font-weight:700;color:var(--white);font-size:0.92rem;margin-bottom:0.15rem;}
+    .author-role{color:var(--gold);font-size:0.75rem;font-weight:600;margin-bottom:0.35rem;}
+    .author-desc{color:var(--muted);font-size:0.8rem;line-height:1.6;}
+    .more-blogs{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+    .more-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem;text-decoration:none;color:inherit;transition:all 0.25s;display:block;}
+    .more-card:hover{border-color:rgba(240,165,0,0.3);transform:translateY(-3px);}
+    .more-icon{font-size:1.3rem;margin-bottom:0.4rem;} .more-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.82rem;color:var(--white);}
+    footer{background:var(--navy);border-top:1px solid var(--border);padding:1.8rem 5%;text-align:center;color:var(--muted);font-size:0.8rem;position:relative;z-index:1;}
+    footer a{color:var(--gold);text-decoration:none;} footer p+p{margin-top:0.3rem;}
+    .scroll-top{position:fixed;bottom:2rem;right:2rem;background:var(--gold);color:var(--navy);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;z-index:99;opacity:0;transform:translateY(10px);transition:all 0.3s;text-decoration:none;}
+    .scroll-top.visible{opacity:1;transform:translateY(0);}
+    @media(max-width:900px){.nav-links{display:none;}.hamburger{display:flex;}.course-hero{grid-template-columns:1fr;}.videos-grid{grid-template-columns:1fr;}.topics-grid{grid-template-columns:1fr;}}
+    @media(max-width:600px){.more-blogs{grid-template-columns:1fr;}.course-stats{grid-template-columns:repeat(3,1fr);}}
+
+    /* ── CONTENT SECTIONS ── */
+    .content-section{margin:3.5rem 0;}
+    .section-header{display:flex;align-items:center;gap:1rem;margin-bottom:0.5rem;}
+    .sec-badge{font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:0.22rem 0.7rem;border-radius:20px;border:1px solid;}
+    .sec-badge.matlab{background:rgba(240,165,0,0.1);color:var(--gold);border-color:rgba(240,165,0,0.3);}
+    .sec-badge.simulink{background:rgba(0,201,167,0.1);color:var(--teal);border-color:rgba(0,201,167,0.3);}
+    .sec-badge.ee{background:rgba(99,102,241,0.1);color:#a5b4fc;border-color:rgba(99,102,241,0.3);}
+    .sec-badge.embedded{background:rgba(239,68,68,0.1);color:#fca5a5;border-color:rgba(239,68,68,0.3);}
+    .sec-badge.control{background:rgba(56,189,248,0.1);color:#7dd3fc;border-color:rgba(56,189,248,0.3);}
+    .content-section h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;color:var(--white);margin-bottom:0.3rem;scroll-margin-top:80px;}
+    .content-section h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--gold);margin:1.6rem 0 0.5rem;}
+    .content-section p{color:var(--muted);font-size:0.93rem;line-height:1.9;margin-bottom:0.9rem;}
+    .content-section p strong{color:var(--text);}
+    .content-section ul,.content-section ol{padding-left:1.4rem;margin-bottom:1rem;}
+    .content-section li{color:var(--muted);font-size:0.91rem;line-height:1.8;margin-bottom:0.3rem;}
+    .content-section li strong{color:var(--text);}
+    /* info/warn */
+    .info-box{background:rgba(0,201,167,0.06);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.3rem 0;}
+    .info-box p{color:var(--text);margin:0;font-size:0.9rem;}
+    .warn-box{background:rgba(240,165,0,0.06);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.3rem 0;}
+    .warn-box p{color:var(--text);margin:0;font-size:0.9rem;}
+    /* FEATURE CARDS */
+    .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem;margin:1.3rem 0;}
+    .feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem;opacity:0;transform:translateY(18px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    .feat-card.in{opacity:1;transform:translateY(0);}
+    .feat-card:hover{border-color:rgba(240,165,0,0.25);transform:translateY(-3px);}
+    .feat-icon{font-size:1.5rem;margin-bottom:0.5rem;}
+    .feat-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;color:var(--white);margin-bottom:0.25rem;}
+    .feat-desc{font-size:0.75rem;color:var(--muted);line-height:1.5;}
+    /* CODE BLOCK */
+    pre.code-block{background:#0d1117;border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;overflow-x:auto;font-family:'Fira Code',monospace;font-size:0.82rem;line-height:1.7;color:#e2e8f0;margin:1.3rem 0;opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    pre.code-block.in{opacity:1;transform:translateY(0);}
+    .code-label{font-size:0.65rem;font-weight:700;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:0.4rem;}
+    .kw{color:#f0a500;} .cm{color:#4b5563;font-style:italic;} .fn{color:#00c9a7;} .str{color:#6ee7b7;} .num{color:#a5b4fc;}
+    /* ILLUSTRATION WRAP */
+    .illus-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem;margin:1.8rem 0;overflow:hidden;opacity:0;transform:translateY(18px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .illus-wrap.in{opacity:1;transform:translateY(0);}
+    .illus-caption{font-size:0.74rem;color:var(--muted);margin-top:0.7rem;line-height:1.6;padding-top:0.6rem;border-top:1px solid var(--border);font-style:italic;}
+    /* STEP TRACK */
+    .step-track{position:relative;margin:1.5rem 0;}
+    .step-track::before{content:'';position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),var(--teal));opacity:0.3;}
+    .step-item{display:flex;gap:1rem;align-items:flex-start;padding:0.8rem 0;opacity:0;transform:translateX(-18px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    .step-item.in{opacity:1;transform:translateX(0);}
+    .step-dot{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;position:relative;z-index:1;}
+    .step-body{flex:1;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.85rem 1rem;}
+    .step-body:hover{border-color:rgba(0,201,167,0.2);}
+    .step-label{font-size:0.65rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal);margin-bottom:0.2rem;}
+    .step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:var(--white);margin-bottom:0.25rem;}
+    .step-desc{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+    /* CREDITS CARD */
+    .credits-card{background:linear-gradient(135deg,rgba(240,165,0,0.06) 0%,rgba(0,201,167,0.06) 100%);border:1px solid rgba(240,165,0,0.2);border-radius:18px;padding:2rem 2.2rem;margin:3rem 0;text-align:center;position:relative;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .credits-card.in{opacity:1;transform:translateY(0);}
+    .credits-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--teal),var(--gold));}
+    .credits-logo{font-size:3rem;margin-bottom:0.8rem;}
+    .credits-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;color:var(--white);margin-bottom:0.5rem;}
+    .credits-body{color:var(--muted);font-size:0.88rem;line-height:1.8;max-width:680px;margin:0 auto 1.2rem;}
+    .credits-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;margin-bottom:1.3rem;}
+    .cr-chip{font-size:0.7rem;padding:0.2rem 0.7rem;border-radius:20px;font-family:'Syne',sans-serif;font-weight:700;}
+    .cr-link{display:inline-flex;align-items:center;gap:0.5rem;background:var(--gold);color:var(--navy);font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;padding:0.6rem 1.4rem;border-radius:8px;text-decoration:none;transition:background 0.2s;}
+    .cr-link:hover{background:var(--gold2);}
+    /* TABLE */
+    .cmp-table{width:100%;border-collapse:collapse;margin:1.3rem 0;font-size:0.82rem;}
+    .cmp-table th{background:rgba(240,165,0,0.08);color:var(--gold);font-family:'Syne',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;padding:0.65rem 0.8rem;text-align:left;border-bottom:2px solid rgba(240,165,0,0.2);}
+    .cmp-table td{padding:0.6rem 0.8rem;color:var(--muted);border-bottom:1px solid var(--border);vertical-align:middle;}
+    .cmp-table td:first-child{font-family:'Syne',sans-serif;font-weight:700;color:var(--text);}
+    .cmp-table tr:hover td{background:rgba(255,255,255,0.02);}
+    .badge{display:inline-block;font-size:0.62rem;font-weight:700;padding:0.1rem 0.45rem;border-radius:3px;font-family:'Fira Code',monospace;}
+    .b-gold{background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.2);}
+    .b-teal{background:rgba(0,201,167,0.12);color:var(--teal);border:1px solid rgba(0,201,167,0.2);}
+    .b-purple{background:rgba(99,102,241,0.12);color:#a5b4fc;border:1px solid rgba(99,102,241,0.2);}
+    .b-blue{background:rgba(56,189,248,0.12);color:#7dd3fc;border:1px solid rgba(56,189,248,0.2);}
+    .b-red{background:rgba(239,68,68,0.12);color:#fca5a5;border:1px solid rgba(239,68,68,0.2);}
+    @keyframes heroGlow{0%,100%{text-shadow:0 0 0 transparent}50%{text-shadow:0 0 30px rgba(240,165,0,0.25)}}
+    h1.article-title{animation:heroGlow 4s ease-in-out infinite;}
+    @media(max-width:700px){.feat-grid{grid-template-columns:1fr 1fr;}.cmp-table{font-size:0.74rem;}}
+    @media(max-width:480px){.feat-grid{grid-template-columns:1fr;}}
+  
+    /* ── SCROLL ANIMATIONS ── */
+    @keyframes slideInLeft{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes slideInRight{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes slideInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes popIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+    @keyframes glowPulse{0%,100%{box-shadow:0 0 0 0 rgba(240,165,0,0)}50%{box-shadow:0 0 20px 4px rgba(240,165,0,0.15)}}
+    @keyframes borderDraw{from{width:0}to{width:50px}}
+    @keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+    /* heading animations */
+    .anim-h2{opacity:0;transform:translateX(-24px);transition:opacity 0.55s ease,transform 0.55s ease;}
+    .anim-h2.in{opacity:1;transform:translateX(0);}
+    .anim-h3{opacity:0;transform:translateX(-16px);transition:opacity 0.45s ease,transform 0.45s ease;}
+    .anim-h3.in{opacity:1;transform:translateX(0);}
+
+    /* paragraph fade */
+    .anim-p{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    .anim-p.in{opacity:1;transform:translateY(0);}
+
+    /* box pop */
+    .anim-box{opacity:0;transform:scale(0.95);transition:opacity 0.45s ease,transform 0.45s ease;}
+    .anim-box.in{opacity:1;transform:scale(1);}
+
+    /* card stagger */
+    .anim-card{opacity:0;transform:translateY(24px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    .anim-card.in{opacity:1;transform:translateY(0);}
+
+    /* list item stagger */
+    .anim-li{opacity:0;transform:translateX(-12px);transition:opacity 0.4s ease,transform 0.4s ease;}
+    .anim-li.in{opacity:1;transform:translateX(0);}
+
+    /* code block slide */
+    .anim-code{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    .anim-code.in{opacity:1;transform:translateY(0);}
+
+    /* glow on hover for h2 */
+    .article-body h2:hover{color:var(--gold2);transition:color 0.3s;}
+    .article-body h3:hover{color:var(--gold2);transition:color 0.3s;}
+
+    /* info/warn box left-border grow on appear */
+    .info-box.in,.warn-box.in{animation:glowPulse 1.2s ease 0.3s;}
+
+    /* proto-header slide */
+    .proto-header{opacity:0;transform:translateX(-20px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    .proto-header.in{opacity:1;transform:translateX(0);}
+
+    /* IoT layers stagger */
+    .iot-layer{opacity:0;transform:translateX(-20px);transition:opacity 0.45s ease,transform 0.45s ease;}
+    .iot-layer.in{opacity:1;transform:translateX(0);}
+
+    /* app cards pop */
+    .app-card{opacity:0;transform:scale(0.88);transition:opacity 0.4s ease,transform 0.4s ease;}
+    .app-card.in{opacity:1;transform:scale(1);}
+
+    /* video cards slide up */
+    .video-card{opacity:0;transform:translateY(28px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    .video-card.in{opacity:1;transform:translateY(0);}
+
+    /* more-blogs cards */
+    .more-card{opacity:0;transform:translateY(16px);transition:opacity 0.4s ease,transform 0.4s ease,border-color 0.25s,box-shadow 0.25s;}
+    .more-card.in{opacity:1;transform:translateY(0);}
+
+    /* table rows */
+    .proto-table tr{opacity:0;transform:translateY(8px);transition:opacity 0.35s ease,transform 0.35s ease;}
+    .proto-table tr.in{opacity:1;transform:translateY(0);}
+
+    /* toc active highlight pulse */
+    .toc-list a.active{animation:glowPulse 2s infinite;}
+
+  </style>
+</head>
+<body>
+<div id="rp"></div>
+<nav id="navbar">
+  <a href="../index.html" class="nav-logo">Sandeep<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../experience.html">Experience</a></li>
+    <li><a href="../blogs.html" class="active">Blogs</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+    <li><a href="../documents.html">Documents</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mm">
+  <a href="../index.html">Home</a><a href="../about.html">About</a>
+  <a href="../blogs.html">Blogs</a><a href="../contact.html">Contact</a>
+  <a href="../documents.html">Documents</a>
+</div>
+
+<div class="page-wrap">
+
+  <!-- COURSE HERO -->
+  <div class="course-hero">
+    <div>
+      <span class="article-cat">📊 MATLAB</span>
+      <h1 class="article-title">MATLAB for Engineers — Complete Video Course</h1>
+      <p class="article-excerpt">A structured 7-chapter video course covering everything from MATLAB basics to GUI development — taught by Sandeep Singh R, published on Udemy. All 7 chapters are freely accessible below.</p>
+      <div class="a-tags">
+        <span class="atag">MATLAB</span><span class="atag">Simulink</span><span class="atag">Signal Processing</span>
+        <span class="atag">GUI Development</span><span class="atag">Matrix Operations</span>
+        <span class="atag">Electrical Engineering</span><span class="atag">Embedded Systems</span>
+        <span class="atag">Control Systems</span><span class="atag">MathWorks</span>
+      </div>
+      <div class="course-stats">
+        <div class="cs-item"><div class="cs-num">7</div><div class="cs-label">MATLAB Chapters</div></div>
+        <div class="cs-item"><div class="cs-num">Free</div><div class="cs-label">Access</div></div>
+        <div class="cs-item"><div class="cs-num">All</div><div class="cs-label">Levels</div></div>
+      </div>
+    </div>
+    <div class="course-info-card">
+      <div class="ci-title">What You'll Learn</div>
+      <ul class="ci-list">
+        <li>MATLAB environment, workspace and scripting workflow</li>
+        <li>Matrix and array operations — the MATLAB core</li>
+        <li>Mathematical, statistical, and signal processing functions</li>
+        <li>Flow control — loops, conditionals, functions</li>
+        <li>2D/3D plotting and publication-quality figures</li>
+        <li>Building interactive GUI applications (App Designer)</li>
+        <li>Simulink block diagram modelling and simulation</li>
+        <li>Simulink for electrical circuits — power electronics</li>
+        <li>Simulink for embedded — Stateflow, code generation</li>
+        <li>Control systems — PID, Bode, root locus in Simulink</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- VIDEOS
+  <div class="divider"></div>
+  <div class="sec-title">Course Chapters</div>
+  <p class="sec-sub">All 7 chapters — watch directly below or open in YouTube.</p>
+
+  <div class="videos-grid">
+
+    <div class="video-card">
+      <div class="video-thumb">
+        <iframe src="https://www.youtube.com/embed/tFLq0SHPw_Q" allowfullscreen loading="lazy" title="Chapter 1 - What is MATLAB"></iframe>
+      </div>
+      <div class="video-body">
+        <div class="ch-num">Chapter 1</div>
+        <div class="ch-title">What is MATLAB?</div>
+        <div class="ch-desc">Introduction to MATLAB — the environment, workspace, command window, and why engineers use it.</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-thumb">
+        <iframe src="https://www.youtube.com/embed/0f-WC2Vz9hU" allowfullscreen loading="lazy" title="Chapter 2 - Matrix Operations"></iframe>
+      </div>
+      <div class="video-body">
+        <div class="ch-num">Chapter 2</div>
+        <div class="ch-title">Matrix Operations</div>
+        <div class="ch-desc">Creating matrices, array indexing, transpose, inverse, element-wise operations — the core of MATLAB.</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-thumb">
+        <iframe src="https://www.youtube.com/embed/CTZv-5AtDPk" allowfullscreen loading="lazy" title="Chapter 3 - Mathematical Operations"></iframe>
+      </div>
+      <div class="video-body">
+        <div class="ch-num">Chapter 3</div>
+        <div class="ch-title">Mathematical Operations</div>
+        <div class="ch-desc">Built-in math functions, trigonometry, statistics, signal processing operations in MATLAB.</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-thumb">
+        <iframe src="https://www.youtube.com/embed/rnTENrxQ9tc" allowfullscreen loading="lazy" title="Chapter 4 - Flow Control"></iframe>
+      </div>
+      <div class="video-body">
+        <div class="ch-num">Chapter 4</div>
+        <div class="ch-title">Flow Control</div>
+        <div class="ch-desc">if/else, for loops, while loops, switch-case — writing logic and control structures in MATLAB scripts.</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-thumb">
+        <iframe src="https://www.youtube.com/embed/gJ3vOlqFEPA" allowfullscreen loading="lazy" title="Chapter 5 - User Defined Functions"></iframe>
+      </div>
+      <div class="video-body">
+        <div class="ch-num">Chapter 5</div>
+        <div class="ch-title">User-Defined Functions</div>
+        <div class="ch-desc">Writing reusable .m function files, input/output arguments, function handles, and modular code structure.</div>
+      </div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-thumb">
+        <iframe src="https://www.youtube.com/embed/2pzjZxWLdBE" allowfullscreen loading="lazy" title="Chapter 6 - Plots in MATLAB"></iframe>
+      </div>
+      <div class="video-body">
+        <div class="ch-num">Chapter 6</div>
+        <div class="ch-title">Plots in MATLAB</div>
+        <div class="ch-desc">2D and 3D plots, subplots, figure formatting, colour maps, and publication-quality visualizations.</div>
+      </div>
+    </div>
+
+    <div class="video-card" style="grid-column:1 / -1; max-width: 540px;">
+      <div class="video-thumb">
+        <iframe src="https://www.youtube.com/embed/kIcky95QOBI" allowfullscreen loading="lazy" title="Chapter 7 - GUI Development"></iframe>
+      </div>
+      <div class="video-body">
+        <div class="ch-num">Chapter 7 — Capstone</div>
+        <div class="ch-title">GUI Development in MATLAB</div>
+        <div class="ch-desc">Building interactive GUI applications using GUIDE and App Designer — buttons, sliders, plots, callbacks. This is what I used professionally for engineering decision dashboards at Microchip.</div>
+      </div>
+    </div>
+
+  </div>
+-->
+  <!-- TOPICS -->
+  <div class="divider"></div>
+  <div class="sec-title">Course Topics</div>
+  <p class="sec-sub">Everything covered across the 7 chapters.</p>
+  <div class="topics-grid">
+    <div class="topic-item"><div class="ti-icon">🖥️</div><div><div class="ti-name">MATLAB Environment</div><div class="ti-desc">IDE, workspace, command window, script files</div></div></div>
+    <div class="topic-item"><div class="ti-icon">🔢</div><div><div class="ti-name">Matrix & Array Ops</div><div class="ti-desc">Core data structure in MATLAB — creation, indexing, operations</div></div></div>
+    <div class="topic-item"><div class="ti-icon">📐</div><div><div class="ti-name">Math Functions</div><div class="ti-desc">Built-in functions for trigonometry, statistics, signal processing</div></div></div>
+    <div class="topic-item"><div class="ti-icon">🔀</div><div><div class="ti-name">Flow Control</div><div class="ti-desc">Loops, conditionals, and control logic in MATLAB</div></div></div>
+    <div class="topic-item"><div class="ti-icon">🧩</div><div><div class="ti-name">Functions</div><div class="ti-desc">Modular code — user-defined functions and function files</div></div></div>
+    <div class="topic-item"><div class="ti-icon">📈</div><div><div class="ti-name">Data Visualization</div><div class="ti-desc">2D/3D plots, subplots, formatted engineering figures</div></div></div>
+    <div class="topic-item"><div class="ti-icon">🖱️</div><div><div class="ti-name">GUI Applications</div><div class="ti-desc">Interactive dashboards and tools with GUIDE / App Designer</div></div></div>
+    <div class="topic-item"><div class="ti-icon">📡</div><div><div class="ti-name">Signal Processing</div><div class="ti-desc">FFT, filtering, and signal analysis workflows</div></div></div>
+  </div>
+ <p><a href="lms.html">←Login to my LMS Page and gain badge __></a></p>
+  <!-- ═══════════════════════════════════════════════════
+       §1 — BASIC MATLAB
+       ═══════════════════════════════════════════════════ -->
+  <div class="content-section" id="basic-matlab">
+    <div class="divider"></div>
+    <div class="section-header">
+      <span class="sec-badge matlab">§ 01</span>
+    </div>
+    <h2>Basic MATLAB — The Engineer's Computing Environment</h2>
+    <p>MATLAB (MATrix LABoratory) is a high-level programming language and interactive environment built for numerical computation, data analysis, algorithm development, and visualization. Unlike general-purpose languages like C or Python, MATLAB is designed from the ground up around <strong>matrix and array operations</strong> — which makes it uniquely powerful for engineering mathematics where data lives naturally in vectors, matrices, and multi-dimensional arrays.</p>
+    <p>MathWorks ships MATLAB with hundreds of domain-specific toolboxes — from Signal Processing and Control System to Deep Learning and Robotics — so engineers rarely need to build core algorithms from scratch. The same MATLAB code runs on laptops, servers, and can be deployed to embedded hardware or the cloud.</p>
+
+    <div class="info-box"><p>💡 <strong>Why engineers choose MATLAB:</strong> The MATLAB syntax is designed so that a matrix equation like <code style="font-family:monospace;color:var(--teal);">A \ b</code> solves the linear system Ax = b directly — no loops, no library imports. What takes 20 lines in C takes 1 line in MATLAB. That speed-of-thought advantage is why MathWorks has 5 million+ users across 180 countries.</p></div>
+
+    <!-- SVG: MATLAB Environment Overview -->
+    <div class="illus-wrap">
+      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <defs><filter id="mg"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <!-- IDE Frame -->
+        <rect x="10" y="10" width="680" height="200" rx="10" fill="#0d1117" stroke="#1e2d45" stroke-width="1.5"/>
+        <rect x="10" y="10" width="680" height="28" rx="10" fill="#151d30" stroke="#1e2d45"/>
+        <rect x="10" y="30" width="680" height="8" fill="#151d30"/>
+        <circle cx="28" cy="24" r="5" fill="#ef4444" opacity="0.7"/>
+        <circle cx="44" cy="24" r="5" fill="#f0a500" opacity="0.7"/>
+        <circle cx="60" cy="24" r="5" fill="#6ee7b7" opacity="0.7"/>
+        <text x="350" y="27" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#8898aa">MATLAB R2024b — matlab_basics.m</text>
+        <!-- Command Window panel -->
+        <rect x="20" y="48" width="200" height="152" rx="6" fill="#0d1117" stroke="#1e2d45" stroke-width="1"/>
+        <text x="30" y="63" font-family="Syne,sans-serif" font-weight="700" font-size="8" fill="#f0a500">Command Window</text>
+        <text x="24" y="80" font-family="Fira Code,monospace" font-size="7.5" fill="#8898aa">&gt;&gt; A = [1 2; 3 4]</text>
+        <text x="24" y="93" font-family="Fira Code,monospace" font-size="7.5" fill="#00c9a7">A = 1  2</text>
+        <text x="24" y="104" font-family="Fira Code,monospace" font-size="7.5" fill="#00c9a7">    3  4</text>
+        <text x="24" y="118" font-family="Fira Code,monospace" font-size="7.5" fill="#8898aa">&gt;&gt; det(A)</text>
+        <text x="24" y="131" font-family="Fira Code,monospace" font-size="7.5" fill="#00c9a7">ans = -2</text>
+        <text x="24" y="145" font-family="Fira Code,monospace" font-size="7.5" fill="#8898aa">&gt;&gt; eig(A)</text>
+        <text x="24" y="158" font-family="Fira Code,monospace" font-size="7.5" fill="#00c9a7">ans = -0.3723</text>
+        <text x="24" y="169" font-family="Fira Code,monospace" font-size="7.5" fill="#00c9a7">       5.3723</text>
+        <!-- Editor panel -->
+        <rect x="228" y="48" width="240" height="152" rx="6" fill="#0d1117" stroke="#1e2d45" stroke-width="1"/>
+        <text x="238" y="63" font-family="Syne,sans-serif" font-weight="700" font-size="8" fill="#a5b4fc">Script Editor</text>
+        <text x="234" y="79" font-family="Fira Code,monospace" font-size="7.5" fill="#4b5563">% Signal analysis</text>
+        <text x="234" y="91" font-family="Fira Code,monospace" font-size="7.5"><tspan fill="#f0a500">fs</tspan><tspan fill="#8898aa"> = 1000;</tspan></text>
+        <text x="234" y="103" font-family="Fira Code,monospace" font-size="7.5"><tspan fill="#f0a500">t</tspan><tspan fill="#8898aa">  = 0:1/fs:1;</tspan></text>
+        <text x="234" y="115" font-family="Fira Code,monospace" font-size="7.5"><tspan fill="#f0a500">x</tspan><tspan fill="#8898aa">  = </tspan><tspan fill="#00c9a7">sin</tspan><tspan fill="#8898aa">(2*pi*50*t);</tspan></text>
+        <text x="234" y="127" font-family="Fira Code,monospace" font-size="7.5"><tspan fill="#f0a500">X</tspan><tspan fill="#8898aa">  = </tspan><tspan fill="#00c9a7">fft</tspan><tspan fill="#8898aa">(x);</tspan></text>
+        <text x="234" y="139" font-family="Fira Code,monospace" font-size="7.5"><tspan fill="#00c9a7">plot</tspan><tspan fill="#8898aa">(abs(X));</tspan></text>
+        <text x="234" y="151" font-family="Fira Code,monospace" font-size="7.5"><tspan fill="#00c9a7">xlabel</tspan><tspan fill="#8898aa">(</tspan><tspan fill="#6ee7b7">'Freq (Hz)'</tspan><tspan fill="#8898aa">);</tspan></text>
+        <text x="234" y="163" font-family="Fira Code,monospace" font-size="7.5"><tspan fill="#00c9a7">title</tspan><tspan fill="#8898aa">(</tspan><tspan fill="#6ee7b7">'FFT Spectrum'</tspan><tspan fill="#8898aa">);</tspan></text>
+        <!-- Workspace panel -->
+        <rect x="476" y="48" width="205" height="152" rx="6" fill="#0d1117" stroke="#1e2d45" stroke-width="1"/>
+        <text x="486" y="63" font-family="Syne,sans-serif" font-weight="700" font-size="8" fill="#7dd3fc">Workspace</text>
+        <rect x="484" y="70" width="189" height="14" rx="2" fill="rgba(240,165,0,0.06)"/>
+        <text x="488" y="80" font-family="Fira Code,monospace" font-size="7" fill="#8898aa">Name       Value    Class</text>
+        <text x="488" y="94" font-family="Fira Code,monospace" font-size="7" fill="#e2e8f0">A          2×2      double</text>
+        <text x="488" y="107" font-family="Fira Code,monospace" font-size="7" fill="#e2e8f0">fs         1000     double</text>
+        <text x="488" y="120" font-family="Fira Code,monospace" font-size="7" fill="#e2e8f0">t          1×1001   double</text>
+        <text x="488" y="133" font-family="Fira Code,monospace" font-size="7" fill="#e2e8f0">x          1×1001   double</text>
+        <text x="488" y="146" font-family="Fira Code,monospace" font-size="7" fill="#e2e8f0">X          1×1001   complex</text>
+        <!-- Cursor blink -->
+        <rect x="114" y="177" width="6" height="10" fill="#00c9a7" opacity="0.9">
+          <animate attributeName="opacity" values="0.9;0;0.9" dur="1s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+      <div class="illus-caption">MATLAB R2024b IDE — three core panels: Command Window (interactive REPL), Script Editor (saved .m scripts), and Workspace (live variable inspector). This FFT snippet creates a 50 Hz sine wave, computes its frequency spectrum in one line, and plots the result.</div>
+    </div>
+
+    <h3>Core MATLAB Concepts</h3>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">🔢</div><div class="feat-title">Matrices &amp; Arrays</div><div class="feat-desc">Everything in MATLAB is a matrix. Scalars are 1×1, vectors are 1×n, images are m×n×3. Operations like +, *, / work element-wise or matrix-wise with a single character difference.</div></div>
+      <div class="feat-card"><div class="feat-icon">📈</div><div class="feat-title">Built-in Plotting</div><div class="feat-desc">plot(), surf(), contour(), imagesc() — publication-quality figures in 1–3 lines. No matplotlib configuration needed; axes, labels, and legends are first-class citizens.</div></div>
+      <div class="feat-card"><div class="feat-icon">📦</div><div class="feat-title">Toolboxes</div><div class="feat-desc">Signal Processing, Control System, Image Processing, Statistics, Deep Learning, Simulink — purpose-built algorithms ready to use. No pip install, no dependency hell.</div></div>
+      <div class="feat-card"><div class="feat-icon">🔄</div><div class="feat-title">Live Scripts</div><div class="feat-desc">MATLAB Live Editor blends code, output, equations (LaTeX), and rich text in one document — perfect for engineering reports and analysis notebooks.</div></div>
+      <div class="feat-card"><div class="feat-icon">⚡</div><div class="feat-title">Vectorization</div><div class="feat-desc">Replace for-loops with vector operations for 10–100× speed gains. <code style="font-family:monospace;color:var(--teal);font-size:0.75rem;">y = sin(x)</code> computes sine for every element in one call — no loop needed.</div></div>
+      <div class="feat-card"><div class="feat-icon">🚀</div><div class="feat-title">Code Generation</div><div class="feat-desc">MATLAB Coder converts .m scripts to C/C++ for embedded deployment. Simulink Embedded Coder generates production-quality firmware from block diagrams — no hand-coding.</div></div>
+    </div>
+
+    <h3>Essential MATLAB Syntax</h3>
+    <div class="code-label">matlab</div>
+    <pre class="code-block"><span class="cm">%% === MATLAB BASICS: Core syntax reference ===</span>
+
+<span class="cm">% 1. Variable assignment (no type declaration needed)</span>
+<span class="kw">x</span> = <span class="num">42</span>;                    <span class="cm">% semicolon suppresses output</span>
+<span class="kw">name</span> = <span class="str">'Sandeep'</span>;           <span class="cm">% strings use single quotes</span>
+
+<span class="cm">% 2. Matrix creation</span>
+<span class="kw">A</span> = [<span class="num">1</span> <span class="num">2</span> <span class="num">3</span>; <span class="num">4</span> <span class="num">5</span> <span class="num">6</span>];       <span class="cm">% 2×3 matrix (semicolon = new row)</span>
+<span class="kw">v</span> = <span class="num">0</span>:<span class="num">0.1</span>:<span class="num">10</span>;              <span class="cm">% row vector from 0 to 10, step 0.1</span>
+<span class="kw">I</span> = <span class="fn">eye</span>(<span class="num">4</span>);                 <span class="cm">% 4×4 identity matrix</span>
+<span class="kw">Z</span> = <span class="fn">zeros</span>(<span class="num">3</span>,<span class="num">3</span>);            <span class="cm">% 3×3 zero matrix</span>
+
+<span class="cm">% 3. Matrix operations</span>
+<span class="kw">C</span> = A * A';                 <span class="cm">% matrix multiply A by its transpose</span>
+<span class="kw">d</span> = <span class="fn">det</span>(C);                 <span class="cm">% determinant</span>
+<span class="kw">x</span> = A \ b;                  <span class="cm">% solve linear system Ax = b</span>
+<span class="kw">e</span> = <span class="fn">eig</span>(C);                 <span class="cm">% eigenvalues</span>
+
+<span class="cm">% 4. Flow control</span>
+<span class="kw">for</span> i = <span class="num">1</span>:<span class="fn">length</span>(v)
+    <span class="kw">y</span>(i) = <span class="fn">sin</span>(v(i)) * <span class="fn">exp</span>(-<span class="num">0.1</span>*v(i));
+<span class="kw">end</span>
+<span class="cm">% Vectorized equivalent (100× faster):</span>
+<span class="kw">y</span> = <span class="fn">sin</span>(v) .* <span class="fn">exp</span>(-<span class="num">0.1</span>*v);
+
+<span class="cm">% 5. Plotting</span>
+<span class="fn">figure</span>; <span class="fn">plot</span>(v, y, <span class="str">'b-'</span>, <span class="str">'LineWidth'</span>, <span class="num">2</span>);
+<span class="fn">xlabel</span>(<span class="str">'Time (s)'</span>); <span class="fn">ylabel</span>(<span class="str">'Amplitude'</span>);
+<span class="fn">title</span>(<span class="str">'Damped Sine Wave'</span>); <span class="fn">grid</span> on;</pre>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       §2 — SIMULINK
+       ═══════════════════════════════════════════════════ -->
+  <div class="content-section" id="simulink">
+    <div class="divider"></div>
+    <div class="section-header">
+      <span class="sec-badge simulink">§ 02</span>
+    </div>
+    <h2>Simulink — Model-Based Design &amp; Simulation</h2>
+    <p>Simulink is MathWorks' graphical modelling environment for dynamic systems. Instead of writing equations as code, you build them as <strong>block diagrams</strong> — drag-and-drop blocks that represent mathematical operations, signal sources, physical components, and logic. Simulink then simulates the time-domain behaviour of your model, from milliseconds to years, with configurable solvers.</p>
+    <p>Simulink is used across aerospace (Airbus, Boeing), automotive (Bosch, Continental, Tesla), medical devices, energy, and industrial automation. It is not a toy — it is the tool that generates <strong>flight-certified autopilot code</strong> and <strong>production ECU firmware</strong> for millions of vehicles.</p>
+
+    <div class="warn-box"><p>⚠️ <strong>Simulink vs MATLAB:</strong> MATLAB is a programming language; Simulink is a graphical modelling tool. They work together — MATLAB workspace variables feed Simulink simulations, and Simulink outputs can be analysed in MATLAB. But they solve different problems: MATLAB for algorithms and data analysis; Simulink for time-domain dynamic system simulation.</p></div>
+
+    <!-- SVG: Simulink Block Diagram Example -->
+    <div class="illus-wrap">
+      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <defs>
+          <marker id="sl-arr" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#00c9a7"/></marker>
+        </defs>
+        <!-- Title bar -->
+        <rect x="10" y="10" width="680" height="22" rx="6" fill="#151d30" stroke="#1e2d45"/>
+        <text x="350" y="25" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="#8898aa">Simulink — PID Control Loop (model: pid_motor_control.slx)</text>
+        <!-- Signal source -->
+        <rect x="20" y="50" width="90" height="50" rx="7" fill="#151d30" stroke="#f0a500" stroke-width="1.5"/>
+        <text x="65" y="73" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="9" fill="#f0a500">Step</text>
+        <text x="65" y="86" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">r(t) setpoint</text>
+        <!-- Sum block -->
+        <circle cx="158" cy="75" r="22" fill="#151d30" stroke="#e2e8f0" stroke-width="1.5"/>
+        <text x="158" y="79" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="14" fill="#e2e8f0">Σ</text>
+        <!-- PID block -->
+        <rect x="200" y="50" width="100" height="50" rx="7" fill="#151d30" stroke="#00c9a7" stroke-width="2"/>
+        <text x="250" y="73" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="10" fill="#00c9a7">PID</text>
+        <text x="250" y="86" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">Controller</text>
+        <!-- Plant/Motor block -->
+        <rect x="330" y="50" width="110" height="50" rx="7" fill="#151d30" stroke="#a5b4fc" stroke-width="1.5"/>
+        <text x="385" y="70" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="9.5" fill="#a5b4fc">Transfer Fn</text>
+        <text x="385" y="83" text-anchor="middle" font-family="Fira Code,monospace" font-size="8" fill="#8898aa">G(s)=K/(τs+1)</text>
+        <text x="385" y="94" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#4b5563">DC Motor Plant</text>
+        <!-- Scope -->
+        <rect x="470" y="50" width="90" height="50" rx="7" fill="#151d30" stroke="#7dd3fc" stroke-width="1.5"/>
+        <text x="515" y="73" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="9.5" fill="#7dd3fc">Scope</text>
+        <text x="515" y="86" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">y(t) output</text>
+        <!-- Feedback path -->
+        <rect x="330" y="130" width="100" height="34" rx="6" fill="#151d30" stroke="#fca5a5" stroke-width="1.2"/>
+        <text x="380" y="151" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#fca5a5">Sensor / Feedback</text>
+        <!-- Signal wires -->
+        <line x1="110" y1="75" x2="136" y2="75" stroke="#00c9a7" stroke-width="1.5" marker-end="url(#sl-arr)"/>
+        <line x1="180" y1="75" x2="198" y2="75" stroke="#00c9a7" stroke-width="1.5" marker-end="url(#sl-arr)"/>
+        <line x1="300" y1="75" x2="328" y2="75" stroke="#00c9a7" stroke-width="1.5" marker-end="url(#sl-arr)"/>
+        <line x1="440" y1="75" x2="468" y2="75" stroke="#00c9a7" stroke-width="1.5" marker-end="url(#sl-arr)"/>
+        <!-- Feedback wire -->
+        <line x1="560" y1="75" x2="580" y2="75" stroke="#00c9a7" stroke-width="1.2"/>
+        <line x1="580" y1="75" x2="580" y2="147" stroke="#00c9a7" stroke-width="1.2"/>
+        <line x1="580" y1="147" x2="430" y2="147" stroke="#00c9a7" stroke-width="1.2"/>
+        <line x1="380" y1="147" x2="380" y2="164" stroke="#fca5a5" stroke-width="1.2"/>
+        <line x1="380" y1="130" x2="380" y2="97" stroke="#fca5a5" stroke-width="1.2"/>
+        <line x1="330" y1="147" x2="200" y2="147" stroke="#fca5a5" stroke-width="1.2" marker-end="url(#sl-arr)"/>
+        <line x1="200" y1="147" x2="158" y2="97" stroke="#fca5a5" stroke-width="1.2" marker-end="url(#sl-arr)"/>
+        <!-- Solver info -->
+        <rect x="588" y="130" width="100" height="40" rx="6" fill="#0d1117" stroke="#1e2d45"/>
+        <text x="638" y="147" text-anchor="middle" font-family="Fira Code,monospace" font-size="7" fill="#8898aa">Solver: ode45</text>
+        <text x="638" y="158" text-anchor="middle" font-family="Fira Code,monospace" font-size="7" fill="#8898aa">Ts = 0.001s</text>
+        <!-- Animated signal dot -->
+        <circle r="5" fill="#00c9a7" opacity="0.9">
+          <animateMotion dur="3s" repeatCount="indefinite" path="M 65,75 L 136,75 L 158,75 L 200,75 L 330,75 L 470,75 L 560,75 L 580,75 L 580,147 L 330,147 L 158,97"/>
+        </circle>
+      </svg>
+      <div class="illus-caption">Simulink closed-loop PID control block diagram: a Step input (setpoint r(t)) feeds a summing junction. The error signal drives a PID Controller block, whose output drives a Transfer Function block modelling a DC motor. The Scope captures output y(t). A Sensor/Feedback block closes the loop back to the summing junction. The animated dot traces signal flow in real time.</div>
+    </div>
+
+    <h3>Simulink Workflow</h3>
+    <div class="step-track">
+      <div class="step-item">
+        <div class="step-dot" style="background:rgba(240,165,0,0.12);border:2px solid rgba(240,165,0,0.4);">1️⃣</div>
+        <div class="step-body"><div class="step-label">Model</div><div class="step-title">Build the Block Diagram</div><div class="step-desc">Drag blocks from the Simulink Library Browser — sources (Step, Sine, Signal Builder), maths (Gain, Integrator, Transfer Fcn), logic (Switch, Stateflow), I/O (To Workspace, Scope). Connect them with signal lines.</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot" style="background:rgba(0,201,167,0.12);border:2px solid rgba(0,201,167,0.4);">2️⃣</div>
+        <div class="step-body"><div class="step-label">Configure</div><div class="step-title">Set Solver &amp; Simulation Parameters</div><div class="step-desc">Choose a continuous solver (ode45, ode23, ode15s for stiff systems) or fixed-step solver (for embedded code generation). Set simulation start/stop time and step size.</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot" style="background:rgba(99,102,241,0.12);border:2px solid rgba(99,102,241,0.4);">3️⃣</div>
+        <div class="step-body"><div class="step-label">Simulate</div><div class="step-title">Run &amp; Analyse</div><div class="step-desc">Click Run. Scopes show time-domain plots live during simulation. Signal logging captures every wire's time history to the MATLAB workspace for post-processing with plot(), fft(), or controlSystemAnalyzer().</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot" style="background:rgba(56,189,248,0.12);border:2px solid rgba(56,189,248,0.4);">4️⃣</div>
+        <div class="step-body"><div class="step-label">Generate</div><div class="step-title">Auto-Generate Production Code</div><div class="step-desc">Simulink Coder converts the model to portable C. Embedded Coder adds hardware-specific optimisations (ARM Cortex, TI C2000, STM32) and generates AUTOSAR or MISRA-C compliant code — ready for the ECU.</div></div>
+      </div>
+    </div>
+
+    <h3>Simulink vs Hand-Coded Simulation</h3>
+    <div style="overflow-x:auto;">
+    <table class="cmp-table">
+      <thead><tr><th>Aspect</th><th>Simulink Model</th><th>Hand-Coded (C/Python)</th></tr></thead>
+      <tbody>
+        <tr><td>Development speed</td><td><span class="badge b-teal">Hours</span> — drag-and-drop</td><td><span class="badge b-red">Days/weeks</span> — write equations</td></tr>
+        <tr><td>Solver selection</td><td>Automatic + configurable (ode45, ode15s…)</td><td>Must implement or use library</td></tr>
+        <tr><td>Code generation</td><td><span class="badge b-teal">Built-in</span> — Embedded Coder → C</td><td>Code IS the output</td></tr>
+        <tr><td>Debugging</td><td>Visual — highlight blocks, scope signals</td><td>printf / debugger / unit tests</td></tr>
+        <tr><td>Certification evidence</td><td>Model coverage, SIL/HIL test reports</td><td>Manual test evidence</td></tr>
+        <tr><td>Learning curve</td><td><span class="badge b-gold">Medium</span> — visual but deep</td><td><span class="badge b-gold">Medium</span> — language first</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       §3 — SIMULINK FOR ELECTRICAL ENGINEERING
+       ═══════════════════════════════════════════════════ -->
+  <div class="content-section" id="simulink-ee">
+    <div class="divider"></div>
+    <div class="section-header">
+      <span class="sec-badge ee">§ 03</span>
+    </div>
+    <h2>Simulink for Electrical Engineering</h2>
+    <p>Simscape Electrical (formerly SimPowerSystems) extends Simulink with physical modelling blocks for <strong>electrical circuits, power electronics, machines, and grid systems</strong>. Instead of writing KVL/KCL equations by hand, you build the circuit schematically — resistors, capacitors, inductors, diodes, MOSFETs, transformers — and Simscape solves the differential equations automatically.</p>
+    <p>This toolbox is used by power electronics engineers designing inverters, motor drives, PFC circuits, and battery management systems. The same model that verifies your converter topology can generate the embedded firmware for your DSP controller.</p>
+
+    <!-- SVG: Power Electronics Simulation Block -->
+    <div class="illus-wrap">
+      <svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <defs>
+          <marker id="ee-arr" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#a5b4fc"/></marker>
+        </defs>
+        <text x="350" y="18" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="10" fill="#e2e8f0">Simscape Electrical — Buck Converter Simulation</text>
+        <!-- DC Source -->
+        <rect x="15" y="50" width="80" height="50" rx="7" fill="#151d30" stroke="#f0a500" stroke-width="1.5"/>
+        <text x="55" y="73" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="9" fill="#f0a500">Vdc</text>
+        <text x="55" y="86" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">48V Source</text>
+        <!-- MOSFET switch -->
+        <rect x="120" y="50" width="80" height="50" rx="7" fill="#151d30" stroke="#fca5a5" stroke-width="1.5"/>
+        <text x="160" y="70" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="9" fill="#fca5a5">MOSFET</text>
+        <text x="160" y="83" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#8898aa">Q1 — IRFZ44</text>
+        <text x="160" y="94" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#4b5563">PWM gate signal</text>
+        <!-- Inductor -->
+        <rect x="225" y="50" width="80" height="50" rx="7" fill="#151d30" stroke="#6ee7b7" stroke-width="1.5"/>
+        <text x="265" y="73" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="9" fill="#6ee7b7">Inductor</text>
+        <text x="265" y="86" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#8898aa">L = 100μH</text>
+        <!-- Diode -->
+        <rect x="330" y="50" width="70" height="50" rx="7" fill="#151d30" stroke="#7dd3fc" stroke-width="1.5"/>
+        <text x="365" y="73" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="9" fill="#7dd3fc">Diode</text>
+        <text x="365" y="86" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#8898aa">D1</text>
+        <!-- Capacitor -->
+        <rect x="425" y="50" width="80" height="50" rx="7" fill="#151d30" stroke="#a5b4fc" stroke-width="1.5"/>
+        <text x="465" y="73" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="9" fill="#a5b4fc">Capacitor</text>
+        <text x="465" y="86" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#8898aa">C = 470μF</text>
+        <!-- Load -->
+        <rect x="530" y="50" width="80" height="50" rx="7" fill="#151d30" stroke="#f0a500" stroke-width="1.5"/>
+        <text x="570" y="73" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="9" fill="#f0a500">R Load</text>
+        <text x="570" y="86" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#8898aa">Vout = 24V</text>
+        <!-- Signal lines -->
+        <line x1="95" y1="75" x2="118" y2="75" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#ee-arr)"/>
+        <line x1="200" y1="75" x2="223" y2="75" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#ee-arr)"/>
+        <line x1="305" y1="75" x2="328" y2="75" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#ee-arr)"/>
+        <line x1="400" y1="75" x2="423" y2="75" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#ee-arr)"/>
+        <line x1="505" y1="75" x2="528" y2="75" stroke="#a5b4fc" stroke-width="1.5" marker-end="url(#ee-arr)"/>
+        <!-- PWM controller block -->
+        <rect x="120" y="125" width="160" height="45" rx="7" fill="#151d30" stroke="#fca5a5" stroke-width="1.5"/>
+        <text x="200" y="144" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="9" fill="#fca5a5">PWM Generator</text>
+        <text x="200" y="157" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#8898aa">fsw = 100kHz · D = 0.5</text>
+        <line x1="200" y1="125" x2="160" y2="100" stroke="#fca5a5" stroke-width="1.2" stroke-dasharray="4 2" marker-end="url(#ee-arr)"/>
+        <!-- Voltage sensor feedback -->
+        <rect x="430" y="130" width="140" height="35" rx="7" fill="#151d30" stroke="#6ee7b7" stroke-width="1.2"/>
+        <text x="500" y="145" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="#6ee7b7">Voltage / Current Sensors</text>
+        <text x="500" y="157" text-anchor="middle" font-family="Fira Code,monospace" font-size="7" fill="#8898aa">Vout, IL measurement</text>
+        <!-- Analysis results strip -->
+        <rect x="15" y="178" width="670" height="24" rx="6" fill="#0d1117" stroke="#1e2d45"/>
+        <text x="25" y="194" font-family="Fira Code,monospace" font-size="7.5" fill="#00c9a7">Vout_ripple = 48mV  ·  IL_ripple = 0.48A  ·  η = 96.2%  ·  Rise time = 2.1ms</text>
+        <!-- Animated current pulse -->
+        <circle r="5" fill="#a5b4fc" opacity="0.9">
+          <animateMotion dur="2.5s" repeatCount="indefinite" path="M 55,75 L 120,75 L 225,75 L 330,75 L 425,75 L 530,75 L 610,75"/>
+        </circle>
+      </svg>
+      <div class="illus-caption">Simscape Electrical — Buck converter model: 48V input stepped down to 24V output via MOSFET switch, inductor, freewheeling diode, and output capacitor. The PWM Generator controls switch duty cycle at 100 kHz. Simscape solves the circuit equations numerically — ripple, efficiency, and transient response are measured automatically by sensor blocks.</div>
+    </div>
+
+    <h3>What Electrical Engineers Simulate in Simulink</h3>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">⚡</div><div class="feat-title">Power Electronics</div><div class="feat-desc">Buck, boost, buck-boost, flyback, full-bridge, LLC resonant converters. MOSFET/IGBT switching losses, EMI prediction, efficiency sweeps across load range.</div></div>
+      <div class="feat-card"><div class="feat-icon">🔋</div><div class="feat-title">Battery &amp; BMS</div><div class="feat-desc">Equivalent circuit models (Thevenin, ECM), State of Charge/Health estimation, thermal models, cell balancing algorithms — the core of EV battery management.</div></div>
+      <div class="feat-card"><div class="feat-icon">🔌</div><div class="feat-title">Motor Drives</div><div class="feat-desc">BLDC, PMSM, induction motor drives. Field-Oriented Control (FOC), SVPWM generation, Clarke/Park transforms — all blockset-ready.</div></div>
+      <div class="feat-card"><div class="feat-icon">🌞</div><div class="feat-title">Renewable Energy</div><div class="feat-desc">Solar PV I-V curve models, MPPT algorithms (P&amp;O, INC), grid-tied inverter control, wind turbine generators, microgrid management.</div></div>
+      <div class="feat-card"><div class="feat-icon">🏭</div><div class="feat-title">Smart Grid</div><div class="feat-desc">Three-phase AC power flow, harmonic analysis, fault simulation (3-phase short, single-line-to-ground), protection relay coordination.</div></div>
+      <div class="feat-card"><div class="feat-icon">📡</div><div class="feat-title">RF &amp; Mixed-Signal</div><div class="feat-desc">LNA, mixer, PLL models in RF Blockset. ADC/DAC quantisation noise, sigma-delta modulator design, mixed-signal verification.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       §4 — SIMULINK FOR ELECTRONICS & EMBEDDED
+       ═══════════════════════════════════════════════════ -->
+  <div class="content-section" id="simulink-embedded">
+    <div class="divider"></div>
+    <div class="section-header">
+      <span class="sec-badge embedded">§ 04</span>
+    </div>
+    <h2>Simulink for Electronics &amp; Embedded Engineering</h2>
+    <p>For embedded engineers, Simulink closes the gap between algorithm design and hardware deployment. You model your firmware logic as a block diagram, test it in simulation (software-in-the-loop), then push a button and get <strong>production-quality, MISRA-C compliant C code</strong> targeted to your specific MCU — STM32, TI C2000, NXP S32K, or custom hardware.</p>
+    <p>Stateflow, MathWorks' state machine environment embedded inside Simulink, models reactive control logic (mode transitions, fault handling, operating state machines) that would take hundreds of lines of hand-coded C. The same Stateflow chart simulates in Simulink and generates C code verbatim.</p>
+
+    <!-- SVG: SIL/HIL/PIL workflow -->
+    <div class="illus-wrap">
+      <svg viewBox="0 0 700 185" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <defs>
+          <marker id="em-arr" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#f0a500"/></marker>
+        </defs>
+        <text x="350" y="16" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="10" fill="#e2e8f0">Model-Based Development — SIL / PIL / HIL Workflow</text>
+        <!-- Stage 1: Model Sim -->
+        <rect x="10" y="28" width="145" height="100" rx="10" fill="#151d30" stroke="#f0a500" stroke-width="2"/>
+        <text x="83" y="52" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="10" fill="#f0a500">① Model-in-Loop</text>
+        <text x="83" y="66" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">Simulink algorithm</text>
+        <text x="83" y="79" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">model runs in PC</text>
+        <text x="83" y="92" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">MATLAB solver</text>
+        <rect x="20" y="99" width="115" height="18" rx="4" fill="rgba(240,165,0,0.1)"/>
+        <text x="78" y="112" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#f0a500">MIL</text>
+        <!-- Arrow 1→2 -->
+        <line x1="155" y1="78" x2="183" y2="78" stroke="#f0a500" stroke-width="2" marker-end="url(#em-arr)"/>
+        <text x="169" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="#f0a500">codegen</text>
+        <!-- Stage 2: SIL -->
+        <rect x="183" y="28" width="145" height="100" rx="10" fill="#151d30" stroke="#00c9a7" stroke-width="2"/>
+        <text x="256" y="52" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="10" fill="#00c9a7">② Software-in-Loop</text>
+        <text x="256" y="66" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">Generated C code</text>
+        <text x="256" y="79" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">runs on PC (x86)</text>
+        <text x="256" y="92" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">vs model output</text>
+        <rect x="193" y="99" width="115" height="18" rx="4" fill="rgba(0,201,167,0.1)"/>
+        <text x="251" y="112" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#00c9a7">SIL</text>
+        <!-- Arrow 2→3 -->
+        <line x1="328" y1="78" x2="356" y2="78" stroke="#f0a500" stroke-width="2" marker-end="url(#em-arr)"/>
+        <text x="342" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="#f0a500">cross-compile</text>
+        <!-- Stage 3: PIL -->
+        <rect x="356" y="28" width="145" height="100" rx="10" fill="#151d30" stroke="#a5b4fc" stroke-width="2"/>
+        <text x="429" y="52" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="10" fill="#a5b4fc">③ Processor-in-Loop</text>
+        <text x="429" y="66" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">Code runs on</text>
+        <text x="429" y="79" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">target MCU (STM32)</text>
+        <text x="429" y="92" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">via JTAG link</text>
+        <rect x="366" y="99" width="115" height="18" rx="4" fill="rgba(99,102,241,0.1)"/>
+        <text x="424" y="112" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#a5b4fc">PIL</text>
+        <!-- Arrow 3→4 -->
+        <line x1="501" y1="78" x2="529" y2="78" stroke="#f0a500" stroke-width="2" marker-end="url(#em-arr)"/>
+        <text x="515" y="70" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="6.5" fill="#f0a500">deploy</text>
+        <!-- Stage 4: HIL -->
+        <rect x="529" y="28" width="161" height="100" rx="10" fill="#151d30" stroke="#fca5a5" stroke-width="2"/>
+        <text x="610" y="52" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="10" fill="#fca5a5">④ Hardware-in-Loop</text>
+        <text x="610" y="66" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">Real ECU + real I/O</text>
+        <text x="610" y="79" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">vs simulated plant</text>
+        <text x="610" y="92" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">(dSPACE / NI VeriStand)</text>
+        <rect x="539" y="99" width="115" height="18" rx="4" fill="rgba(239,68,68,0.1)"/>
+        <text x="597" y="112" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#fca5a5">HIL</text>
+        <!-- Bottom row: coverage notes -->
+        <rect x="10" y="145" width="680" height="32" rx="7" fill="#0d1117" stroke="#1e2d45"/>
+        <text x="350" y="158" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="8.5" fill="#e2e8f0">Certification Coverage:</text>
+        <text x="350" y="170" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">MIL: algorithm verification  ·  SIL: code correctness  ·  PIL: timing + precision  ·  HIL: system integration + fault injection (DO-178C / ISO 26262)</text>
+        <!-- Animated dot -->
+        <circle r="5" fill="#f0a500" opacity="0.9">
+          <animateMotion dur="4s" repeatCount="indefinite" path="M 83,78 L 183,78 L 256,78 L 356,78 L 429,78 L 529,78 L 610,78"/>
+        </circle>
+      </svg>
+      <div class="illus-caption">Model-Based Development pipeline: the algorithm starts as a Simulink model (MIL), becomes generated C code tested on PC (SIL), runs on the actual target MCU via JTAG (PIL), then integrates with a Hardware-in-the-Loop rig that simulates the physical plant (HIL). Each stage adds confidence before the next — and every test run generates certification evidence for DO-178C or ISO 26262.</div>
+    </div>
+
+    <h3>Embedded Engineering Capabilities</h3>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">⚙️</div><div class="feat-title">Stateflow</div><div class="feat-desc">Graphical state machine and flow chart designer. Models operating modes, fault state machines, protocol parsers. Generates MISRA-C code directly — used in AUTOSAR components and safety-critical firmware.</div></div>
+      <div class="feat-card"><div class="feat-icon">💻</div><div class="feat-title">Embedded Coder</div><div class="feat-desc">Generates optimised, portable C/C++ from Simulink models. Target-specific optimisations for ARM, TI C2000, NXP, Infineon. Produces AUTOSAR-compatible software components.</div></div>
+      <div class="feat-card"><div class="feat-icon">🧪</div><div class="feat-title">SIL / PIL Testing</div><div class="feat-desc">Software-in-Loop runs generated C on PC for unit testing. Processor-in-Loop runs code on the actual MCU and compares outputs with the model to detect floating-point differences.</div></div>
+      <div class="feat-card"><div class="feat-icon">🔌</div><div class="feat-title">Hardware Support</div><div class="feat-desc">Arduino, Raspberry Pi, STM32, TI LaunchPad, NXP FRDM support packages. One-click deploy to hardware for rapid prototyping and algorithm validation on real silicon.</div></div>
+      <div class="feat-card"><div class="feat-icon">📋</div><div class="feat-title">AUTOSAR Blockset</div><div class="feat-desc">Design AUTOSAR Classic and Adaptive software components, runnable entities, and port interfaces directly in Simulink — integrated with arxml import/export for OEM toolchains.</div></div>
+      <div class="feat-card"><div class="feat-icon">🛡️</div><div class="feat-title">Polyspace</div><div class="feat-desc">Static code analysis for run-time errors: overflow, divide-by-zero, out-of-bounds. Used for ISO 26262 and DO-178C software qualification — proves absence of run-time errors.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       §5 — CONTROL SYSTEMS USING SIMULINK
+       ═══════════════════════════════════════════════════ -->
+  <div class="content-section" id="control-systems">
+    <div class="divider"></div>
+    <div class="section-header">
+      <span class="sec-badge control">§ 05</span>
+    </div>
+    <h2>Control Systems Using Simulink</h2>
+    <p>Control system design is where MATLAB and Simulink shine brightest. The <strong>Control System Toolbox</strong> gives you transfer functions, state-space models, Bode plots, Nyquist diagrams, root locus, and automated PID tuning — all with 1–2 lines of MATLAB. Simulink turns those designs into closed-loop simulations you can test before touching hardware.</p>
+    <p>From a simple PID thermostat to a multi-loop cascaded flight control system, the workflow is the same: model the plant, design the controller, simulate the closed loop, tune, verify stability margins, and generate embedded code. The <strong>Control System Tuner</strong> app and <strong>PID Tuner</strong> automate the tuning step — finding optimal gains in seconds that would take hours of manual trial-and-error.</p>
+
+    <div class="info-box"><p>💡 <strong>Real project example:</strong> In my SLI crane project, I used MATLAB's Control System Toolbox to design and verify a load rate-of-change filter that suppressed dynamic load spikes without introducing measurement lag. The filter was designed in MATLAB (transfer function, Bode plot, phase margin verification), simulated in Simulink, then the generated C code was dropped into the STM32 firmware. Zero manual rewriting.</p></div>
+
+    <!-- SVG: Control System Analysis Tools -->
+    <div class="illus-wrap">
+      <svg viewBox="0 0 700 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <defs>
+          <marker id="cs-arr" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#7dd3fc"/></marker>
+        </defs>
+        <!-- Axes: Bode magnitude plot -->
+        <rect x="10" y="20" width="205" height="160" rx="8" fill="#0d1117" stroke="#1e2d45"/>
+        <text x="112" y="36" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="8.5" fill="#7dd3fc">Bode Plot — Magnitude</text>
+        <line x1="30" y1="160" x2="205" y2="160" stroke="#1e2d45" stroke-width="1"/>
+        <line x1="30" y1="45" x2="30" y2="160" stroke="#1e2d45" stroke-width="1"/>
+        <text x="115" y="175" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#4b5563">Frequency (rad/s)</text>
+        <text x="15" y="105" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#4b5563" transform="rotate(-90,15,105)">|G(jω)| dB</text>
+        <!-- Bode curve -->
+        <path d="M 32,55 L 80,55 L 120,80 L 155,120 L 175,145 L 200,155" fill="none" stroke="#7dd3fc" stroke-width="2"/>
+        <!-- -3dB marker -->
+        <line x1="30" y1="80" x2="205" y2="80" stroke="#4b5563" stroke-width="0.8" stroke-dasharray="3 3"/>
+        <text x="35" y="78" font-family="Fira Code,monospace" font-size="7" fill="#f0a500">-3dB</text>
+        <!-- PM marker -->
+        <line x1="155" y1="45" x2="155" y2="160" stroke="#fca5a5" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="158" y="60" font-family="Fira Code,monospace" font-size="7" fill="#fca5a5">ωc</text>
+        <text x="35" y="50" font-family="DM Sans,sans-serif" font-size="7.5" fill="#8898aa">GM = 12dB</text>
+        <!-- Step response plot -->
+        <rect x="230" y="20" width="205" height="160" rx="8" fill="#0d1117" stroke="#1e2d45"/>
+        <text x="333" y="36" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="8.5" fill="#00c9a7">Step Response</text>
+        <line x1="250" y1="160" x2="425" y2="160" stroke="#1e2d45" stroke-width="1"/>
+        <line x1="250" y1="55" x2="250" y2="160" stroke="#1e2d45" stroke-width="1"/>
+        <text x="335" y="175" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#4b5563">Time (s)</text>
+        <!-- Setpoint line -->
+        <line x1="252" y1="75" x2="422" y2="75" stroke="#4b5563" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="256" y="72" font-family="Fira Code,monospace" font-size="7" fill="#4b5563">r = 1.0</text>
+        <!-- Underdamped response -->
+        <path d="M 252,158 L 268,75 L 290,60 L 315,72 L 340,76 L 370,75 L 422,75" fill="none" stroke="#00c9a7" stroke-width="2"/>
+        <!-- Overshoot annotation -->
+        <line x1="268" y1="60" x2="268" y2="75" stroke="#f0a500" stroke-width="1"/>
+        <text x="272" y="65" font-family="Fira Code,monospace" font-size="7" fill="#f0a500">OS=20%</text>
+        <!-- Rise time -->
+        <line x1="252" y1="145" x2="268" y2="145" stroke="#a5b4fc" stroke-width="1.2"/>
+        <text x="260" y="155" font-family="Fira Code,monospace" font-size="7" fill="#a5b4fc">tr</text>
+        <!-- Root locus -->
+        <rect x="450" y="20" width="240" height="160" rx="8" fill="#0d1117" stroke="#1e2d45"/>
+        <text x="570" y="36" text-anchor="middle" font-family="Syne,sans-serif" font-weight="700" font-size="8.5" fill="#f0a500">Root Locus / PID Tuner</text>
+        <line x1="570" y1="45" x2="570" y2="172" stroke="#1e2d45" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="460" y1="108" x2="680" y2="108" stroke="#1e2d45" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="574" y="45" font-family="DM Sans,sans-serif" font-size="7" fill="#4b5563">Im</text>
+        <text x="674" y="113" font-family="DM Sans,sans-serif" font-size="7" fill="#4b5563">Re</text>
+        <!-- Root locus paths (k increasing) -->
+        <path d="M 530,108 Q 520,80 515,60" fill="none" stroke="#f0a500" stroke-width="1.5"/>
+        <path d="M 530,108 Q 520,136 515,156" fill="none" stroke="#f0a500" stroke-width="1.5"/>
+        <path d="M 640,108 Q 630,90 570,70 Q 540,60 515,60" fill="none" stroke="#f0a500" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <!-- Poles -->
+        <text x="528" y="112" font-family="Syne,sans-serif" font-size="12" fill="#fca5a5">×</text>
+        <text x="638" y="112" font-family="Syne,sans-serif" font-size="12" fill="#fca5a5">×</text>
+        <!-- Closed loop poles marker -->
+        <circle cx="540" cy="85" r="4" fill="none" stroke="#00c9a7" stroke-width="1.5"/>
+        <circle cx="540" cy="131" r="4" fill="none" stroke="#00c9a7" stroke-width="1.5"/>
+        <text x="546" y="82" font-family="DM Sans,sans-serif" font-size="7" fill="#00c9a7">closed-loop poles</text>
+        <!-- PID gains display -->
+        <rect x="455" y="145" width="230" height="28" rx="5" fill="rgba(240,165,0,0.06)" stroke="rgba(240,165,0,0.2)"/>
+        <text x="570" y="157" text-anchor="middle" font-family="Fira Code,monospace" font-size="7.5" fill="#f0a500">Kp=2.4  Ki=0.8  Kd=0.15</text>
+        <text x="570" y="168" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7" fill="#8898aa">Auto-tuned: PM=60° · Bandwidth=10 rad/s</text>
+        <!-- Animated sweep line on Bode -->
+        <line x1="30" y1="45" x2="30" y2="160" stroke="#7dd3fc" stroke-width="1" opacity="0.4">
+          <animate attributeName="x1" from="32" to="200" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="x2" from="32" to="200" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite"/>
+        </line>
+      </svg>
+      <div class="illus-caption">MATLAB Control System Toolbox analysis tools: Bode plot (left) shows gain and phase margins — GM=12dB means the loop can gain an extra 12dB before instability; Step response (centre) shows 20% overshoot and rise time from the PID-tuned closed loop; Root locus (right) shows how closed-loop poles move as gain increases, with the PID Tuner's auto-calculated gains achieving 60° phase margin.</div>
+    </div>
+
+    <h3>Control System Design Workflow in MATLAB + Simulink</h3>
+    <div class="step-track">
+      <div class="step-item">
+        <div class="step-dot" style="background:rgba(56,189,248,0.12);border:2px solid rgba(56,189,248,0.4);">📐</div>
+        <div class="step-body"><div class="step-label">Step 01</div><div class="step-title">Model the Plant</div><div class="step-desc">Create a transfer function or state-space model of the system being controlled. In MATLAB: <code style="font-family:monospace;color:var(--teal);font-size:0.8rem;">G = tf([K], [tau 1])</code> defines a first-order plant. Use system identification (ident toolbox) to extract models from real measured data.</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot" style="background:rgba(56,189,248,0.12);border:2px solid rgba(56,189,248,0.4);">📊</div>
+        <div class="step-body"><div class="step-label">Step 02</div><div class="step-title">Analyse Open-Loop Behaviour</div><div class="step-desc">Plot the Bode diagram (<code style="font-family:monospace;color:var(--teal);font-size:0.8rem;">bode(G)</code>), Nyquist diagram, step response, and pole-zero map. Understand gain crossover frequency, phase margin, and natural frequency before any controller is added.</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot" style="background:rgba(56,189,248,0.12);border:2px solid rgba(56,189,248,0.4);">🎯</div>
+        <div class="step-body"><div class="step-label">Step 03</div><div class="step-title">Design the Controller</div><div class="step-desc">Use <code style="font-family:monospace;color:var(--teal);font-size:0.8rem;">pidTuner(G, 'PID')</code> for automatic PID tuning, <code style="font-family:monospace;color:var(--teal);font-size:0.8rem;">rlocus(G)</code> for root locus, or <code style="font-family:monospace;color:var(--teal);font-size:0.8rem;">loopsyn(G, W)</code> for H∞ robust control. The PID Tuner app adjusts bandwidth/robustness sliders and shows the result live.</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot" style="background:rgba(56,189,248,0.12);border:2px solid rgba(56,189,248,0.4);">🔬</div>
+        <div class="step-body"><div class="step-label">Step 04</div><div class="step-title">Verify in Simulink Closed Loop</div><div class="step-desc">Import plant and controller blocks into Simulink. Add disturbances, noise, saturation limits, and anti-windup. Simulate step responses, disturbance rejection, and parameter variations. Check settling time, overshoot, and steady-state error against requirements.</div></div>
+      </div>
+      <div class="step-item">
+        <div class="step-dot" style="background:rgba(56,189,248,0.12);border:2px solid rgba(56,189,248,0.4);">🚀</div>
+        <div class="step-body"><div class="step-label">Step 05</div><div class="step-title">Deploy to Embedded Target</div><div class="step-desc">Use Embedded Coder to generate the discrete-time controller C code for your MCU. Choose discretisation method (Tustin, ZOH, matched poles), set the sample time, and generate code. The generated PID integrator handles anti-windup, bumpless transfer, and output limits automatically.</div></div>
+      </div>
+    </div>
+
+    <h3>Types of Control Systems You Can Design</h3>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">🔄</div><div class="feat-title">PID Control</div><div class="feat-desc">The workhorse of industrial control. Auto-tune with pidTuner(), implement anti-windup, derivative filtering, and set-point weighting. Used in 90%+ of real embedded controllers.</div></div>
+      <div class="feat-card"><div class="feat-icon">🏗️</div><div class="feat-title">State-Space / LQR</div><div class="feat-desc">Model multi-input multi-output (MIMO) systems as state-space equations. Design optimal controllers with LQR (linear quadratic regulator) and Kalman filter state estimators.</div></div>
+      <div class="feat-card"><div class="feat-icon">🔋</div><div class="feat-title">Model Predictive Control</div><div class="feat-desc">MPC Toolbox designs controllers that optimise a cost function over a receding horizon — handles constraints explicitly. Used in battery management, HVAC, and process control.</div></div>
+      <div class="feat-card"><div class="feat-icon">🦾</div><div class="feat-title">Robust Control (H∞)</div><div class="feat-desc">Design controllers that maintain stability and performance despite plant uncertainty. Used where the system model is imprecise or parameter variations are large.</div></div>
+      <div class="feat-card"><div class="feat-icon">🤖</div><div class="feat-title">Adaptive Control</div><div class="feat-desc">Controllers that update their own gains based on system performance — useful when plant parameters change over time (e.g., aircraft changing mass as fuel burns).</div></div>
+      <div class="feat-card"><div class="feat-icon">📡</div><div class="feat-title">Digital Control</div><div class="feat-desc">Discretise continuous controllers for DSP/MCU implementation. Tustin (bilinear) and matched-pole discretisation with configurable sample rates. Z-domain stability verification.</div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       CREDITS — MATHWORKS
+       ═══════════════════════════════════════════════════ -->
+  <div class="credits-card" id="credits">
+    <div class="credits-logo">🧮</div>
+    <div class="credits-title">Credits &amp; Acknowledgements — MathWorks</div>
+    <p class="credits-body">MATLAB and Simulink are products of <strong style="color:var(--white);">MathWorks, Inc.</strong> — founded in 1984 and headquartered in Natick, Massachusetts. All MATLAB/Simulink concepts, toolbox names, block library names, solver names, and product names referenced on this page are trademarks of MathWorks. The course content and explanations on this page are original educational material created by Sandeep Singh R, drawing on personal professional experience and MathWorks' publicly available documentation.</p>
+    <div class="credits-chips">
+      <span class="cr-chip" style="background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.25);">MATLAB®</span>
+      <span class="cr-chip" style="background:rgba(0,201,167,0.12);color:var(--teal);border:1px solid rgba(0,201,167,0.25);">Simulink®</span>
+      <span class="cr-chip" style="background:rgba(99,102,241,0.12);color:#a5b4fc;border:1px solid rgba(99,102,241,0.25);">Simscape™ Electrical</span>
+      <span class="cr-chip" style="background:rgba(56,189,248,0.12);color:#7dd3fc;border:1px solid rgba(56,189,248,0.25);">Control System Toolbox™</span>
+      <span class="cr-chip" style="background:rgba(239,68,68,0.12);color:#fca5a5;border:1px solid rgba(239,68,68,0.25);">Embedded Coder™</span>
+      <span class="cr-chip" style="background:rgba(240,165,0,0.12);color:var(--gold);border:1px solid rgba(240,165,0,0.25);">Stateflow®</span>
+      <span class="cr-chip" style="background:rgba(136,152,170,0.12);color:var(--muted);border:1px solid rgba(136,152,170,0.25);">Signal Processing Toolbox™</span>
+      <span class="cr-chip" style="background:rgba(136,152,170,0.12);color:var(--muted);border:1px solid rgba(136,152,170,0.25);">MPC Toolbox™</span>
+    </div>
+    <a href="https://www.mathworks.com" target="_blank" rel="noopener" class="cr-link">🌐 Visit MathWorks.com</a>
+  </div>
+
+  <!-- AUTHOR -->
+  <div class="author-bio">
+    <div class="author-photo"></div>
+    <div>
+      <div class="author-name">Sandeep Singh R — Course Instructor</div>
+      <div class="author-role">PMP® | XLRI-Certified PM | MATLAB Expert | Udemy Instructor</div>
+      <div class="author-desc">I've used MATLAB professionally for 10+ years — from NRB acoustic research at PESIT to delivering MATLAB GUI dashboards for Microchip as a consultant. This course distils that experience into practical, engineering-focused lessons. I've taught 100+ students through Udemy and live workshops at MSRIT, BMSIT, and PSR Engineering College.</div>
+    </div>
+  </div>
+
+  <!-- MORE -->
+  <div style="font-family:'Syne',sans-serif;font-weight:700;color:var(--white);margin-bottom:1rem;">More Articles</div>
+  <div class="more-blogs">
+    <a href="embedded_basics.html" class="more-card"><div class="more-icon">🔌</div><div class="more-title">Embedded Systems Basics</div></a>
+    <a href="communicationprotocol.html" class="more-card"><div class="more-icon">📡</div><div class="more-title">Communication Protocols Guide</div></a>
+    <a href="IOT.html" class="more-card"><div class="more-icon">🌐</div><div class="more-title">IoT Architecture & Applications</div></a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 <a href="../index.html">Sandeep Singh R</a> · PMP® Certified Project & Product Manager · Bengaluru, India</p>
+  <p><a href="../blogs.html">← Back to all blogs</a></p>
+</footer>
+<a href="#" class="scroll-top" id="st">↑</a>
+<script>
+  const rp=document.getElementById('rp'),st=document.getElementById('st');
+  window.addEventListener('scroll',()=>{
+    const s=document.documentElement;
+    rp.style.width=(s.scrollTop/(s.scrollHeight-s.clientHeight)*100)+'%';
+    st.classList.toggle('visible',scrollY>400);
+    document.getElementById('navbar').classList.toggle('scrolled',scrollY>50);
+  });
+
+  /* ── ANIMATION ENGINE ── */
+  (function(){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(!e.isIntersecting) return;
+        const el = e.target;
+        el.classList.add('in');
+        io.unobserve(el);
+      });
+    }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+
+    // h2 & h3
+    document.querySelectorAll('.article-body h2').forEach(h => { h.classList.add('anim-h2'); io.observe(h); });
+    document.querySelectorAll('.article-body h3').forEach(h => { h.classList.add('anim-h3'); io.observe(h); });
+    document.querySelectorAll('.article-body h4').forEach(h => { h.classList.add('anim-h3'); io.observe(h); });
+
+    // paragraphs (staggered)
+    document.querySelectorAll('.article-body p').forEach((p,i) => {
+      p.classList.add('anim-p');
+      p.style.transitionDelay = (i % 4) * 0.06 + 's';
+      io.observe(p);
+    });
+
+    // info/warn boxes
+    document.querySelectorAll('.info-box,.warn-box').forEach(b => { b.classList.add('anim-box'); io.observe(b); });
+
+    // code blocks
+    document.querySelectorAll('pre').forEach(c => { c.classList.add('anim-code'); io.observe(c); });
+
+    // list items stagger
+    document.querySelectorAll('.article-body li').forEach((li,i) => {
+      li.classList.add('anim-li');
+      li.style.transitionDelay = (i % 6) * 0.07 + 's';
+      io.observe(li);
+    });
+
+    // protocol headers
+    document.querySelectorAll('.proto-header').forEach((h,i) => {
+      h.style.transitionDelay = i * 0.1 + 's';
+      io.observe(h);
+    });
+
+    // IoT layers stagger
+    document.querySelectorAll('.iot-layer').forEach((l,i) => {
+      l.style.transitionDelay = i * 0.1 + 's';
+      io.observe(l);
+    });
+
+    // app cards stagger
+    document.querySelectorAll('.app-card').forEach((c,i) => {
+      c.style.transitionDelay = i * 0.08 + 's';
+      io.observe(c);
+    });
+
+    // video cards stagger
+    document.querySelectorAll('.video-card').forEach((c,i) => {
+      c.style.transitionDelay = i * 0.12 + 's';
+      io.observe(c);
+    });
+
+    // more-cards
+    document.querySelectorAll('.more-card').forEach((c,i) => {
+      c.style.transitionDelay = i * 0.1 + 's';
+      io.observe(c);
+    });
+
+    // feat-cards (new sections)
+    document.querySelectorAll('.feat-card').forEach((c,i) => {
+      c.style.transitionDelay = i * 0.08 + 's';
+      io.observe(c);
+    });
+
+    // step-items
+    document.querySelectorAll('.step-item').forEach((c,i) => {
+      c.style.transitionDelay = i * 0.1 + 's';
+      io.observe(c);
+    });
+
+    // illus-wrap
+    document.querySelectorAll('.illus-wrap').forEach((c,i) => {
+      c.style.transitionDelay = i * 0.08 + 's';
+      io.observe(c);
+    });
+
+    // code-block
+    document.querySelectorAll('pre.code-block').forEach((c,i) => {
+      io.observe(c);
+    });
+
+    // credits card
+    document.querySelectorAll('.credits-card').forEach(c => { io.observe(c); });
+
+    // info/warn boxes in content sections
+    document.querySelectorAll('.content-section .info-box, .content-section .warn-box').forEach(b => {
+      b.classList.add('anim-box'); io.observe(b);
+    });
+
+    // comparison table rows
+    document.querySelectorAll('.proto-table tr').forEach((r,i) => {
+      r.style.transitionDelay = i * 0.07 + 's';
+      io.observe(r);
+    });
+
+    // course stat items
+    document.querySelectorAll('.cs-item').forEach((c,i) => {
+      c.classList.add('anim-card');
+      c.style.transitionDelay = i * 0.1 + 's';
+      io.observe(c);
+    });
+
+  })();
+
+</script>
+</body>
+</html>
